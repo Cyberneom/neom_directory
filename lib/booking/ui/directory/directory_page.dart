@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:neom_commons/core/domain/model/app_user.dart';
+import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
+import 'package:neom_commons/core/utils/app_color.dart';
+import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
+
+import 'directory_controller.dart';
+import 'directory_facility.dart';
+
+class DirectoryPage extends StatelessWidget {
+  const DirectoryPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<DirectoryController>(
+      id: AppPageIdConstants.directory,
+      init: DirectoryController(),
+      builder: (_) => Scaffold(
+        appBar: AppBarChild(title: "Directorio Comercial",color: Colors.transparent),
+        backgroundColor: AppColor.main75,
+        body: Obx(()=>SafeArea(
+          child: _.isLoading ? const Center(child: CircularProgressIndicator())
+              : false ? ListView(
+            padding: const EdgeInsets.all(10),
+
+            children: <Widget>[
+              for(AppUser facilityUser in _.facilityUsers.values)
+                DirectoryFacility(facilityUser),
+            ],
+          ): ListView.separated(
+    padding: EdgeInsets.zero,
+    shrinkWrap: true,
+    separatorBuilder:  (context, index) => const Divider(),
+    itemCount: _.sortedProfileLocation.length,
+    itemBuilder: (context, index) {
+      return DirectoryFacility(_.sortedProfileLocation.values.elementAt(index),
+        distanceBetween: _.sortedProfileLocation.keys.elementAt(index).round().toString(),);
+    }),
+        ),
+        ),
+      )
+    );
+  }
+
+}
