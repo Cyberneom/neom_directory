@@ -69,9 +69,9 @@ class ReservationPageState extends State<ReservationPage> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                           Column(
+                           const Column(
                                crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const <Widget>[
+                              children: <Widget>[
                                Text("Début de Séjour",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                                Text("25-juin-2020",style: TextStyle(color: Colors.black38,height : 1.5,fontSize: 16),)
                               ],
@@ -81,9 +81,9 @@ class ReservationPageState extends State<ReservationPage> {
                         color: Colors.black38,
                         height: 50,
                       ),
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text("Fin de Séjour",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                           Text("29-juin-2020",style: TextStyle(color: Colors.black38,height : 1.5,fontSize: 16),)
                         ],
@@ -97,10 +97,10 @@ class ReservationPageState extends State<ReservationPage> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Column(
+                      const Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text("Nombre de nuit",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                           Text("4",style: TextStyle(color: Colors.black38,height : 1.5,fontSize: 16),)
                         ],
@@ -110,10 +110,10 @@ class ReservationPageState extends State<ReservationPage> {
                         color: Colors.black38,
                         height: 50,
                       ),
-                      Column(
+                      const Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text("Prix total",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                           Text("9800 DA",style: TextStyle(color: Colors.black38,height : 1.5,fontSize: 16),)
                         ],

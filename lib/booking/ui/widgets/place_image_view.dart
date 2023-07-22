@@ -3,8 +3,8 @@ import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:get/get.dart';
 import 'package:neom_commons/neom_commons.dart';
 
-import '../directory/booking_place_details.dart';
 import '../to-work/booking_payment_page.dart';
+import '../to-work/booking_place_details.dart';
 
 // ignore: must_be_immutable
 class PlaceImageView extends StatefulWidget {

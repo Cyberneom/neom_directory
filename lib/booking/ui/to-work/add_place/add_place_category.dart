@@ -37,9 +37,9 @@ class AddPlaceCategoryState extends State<AddPlaceCategory> {
                 onTap: (){
                   _askedToLead();
                 },
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding:  EdgeInsets.fromLTRB(10,8,10,0),
                       child: Text("Start by choosing a general category",
@@ -72,9 +72,9 @@ class AddPlaceCategoryState extends State<AddPlaceCategory> {
                 onTap: (){
                   sousCategorieDialog();
                 },
-                child: Column(
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
+                  children: <Widget>[
                     Padding(
                       padding:  EdgeInsets.fromLTRB(10,8,10,0),
                       child: Text("Choose a type of place now",

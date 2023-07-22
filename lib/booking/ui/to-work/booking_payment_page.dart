@@ -158,9 +158,9 @@ class BookingPaymentPageState extends State<BookingPaymentPage> {
                  ),
                ],
              ),
-             Row(
+             const Row(
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: const <Widget>[
+               children: <Widget>[
                  Text("Impuestos",
                      style: TextStyle(
                          color: Colors.grey,

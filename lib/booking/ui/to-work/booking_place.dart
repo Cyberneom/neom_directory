@@ -7,7 +7,7 @@ import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/app_theme.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
-import '../to-work/booking_payment_page.dart';
+import 'booking_payment_page.dart';
 import 'booking_place_details.dart';
 
 

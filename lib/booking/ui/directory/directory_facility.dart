@@ -57,7 +57,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   ),
                 ),
                 const Divider(thickness: 1),
-                facilityAvatarSection(context, _.userController.profile.id, facilityProfile,
+                facilityAvatarSection(context, _.userController.profile, facilityProfile,
                     role: _.userController.user!.userRole),
                 AppTheme.heightSpace10,
                 facilityProfile.aboutMe.isNotEmpty ?
@@ -95,7 +95,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  Widget facilityAvatarSection(BuildContext context, String profileId,  AppProfile facilityProfile,
+  Widget facilityAvatarSection(BuildContext context, AppProfile profile,  AppProfile facilityProfile,
       {bool showDots = true, UserRole role = UserRole.subscriber}) {
     return Row(
       children: <Widget>[
@@ -128,7 +128,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () => profileId == facilityProfile.id
+                                onTap: () => profile.id == facilityProfile.id
                                     ? Get.toNamed(AppRouteConstants.profile)
                                     : Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
                                 child: Text(facilityProfile.name.length < AppConstants.maxProfileNameLength
@@ -196,7 +196,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   child: Text(AppTranslationConstants.toContact.tr,
                     style: const TextStyle(color: Colors.white),),
                   onTap: () {
-                    String message = "${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} ${AppTranslationConstants.dirWhatsappMsgB.tr}";
+                    String message = '${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${AppTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
                     CoreUtilities.launchWhatsappURL(widget.facilityUser.countryCode+widget.facilityUser.phoneNumber, message);
                   },
                 ),

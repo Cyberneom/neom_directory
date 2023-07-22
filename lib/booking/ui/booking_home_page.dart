@@ -65,7 +65,7 @@ class BookingHomePage extends StatelessWidget {
                             left: 0,
                             right: 0,
                             child: MaterialButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Get.toNamed(AppRouteConstants.directory);
                               },
                               elevation: 3,

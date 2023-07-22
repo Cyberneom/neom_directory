@@ -7,8 +7,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:neom_commons/neom_commons.dart';
 
+import '../../domain/use_cases/directory_service.dart';
 
-class DirectoryController extends GetxController {
+
+class DirectoryController extends GetxController implements DirectoryService{
 
   var logger = AppUtilities.logger;
   final userController = Get.find<UserController>();
@@ -56,14 +58,15 @@ class DirectoryController extends GetxController {
       _position = await GeoLocatorController().getCurrentPosition();
       List<AppUser> usersWithPhoneAndFacility = await UserFirestore().getWithParameters(
           needsPhone: true, includeProfile: true,
-          profileTypes: [ProfileType.facilitator, ProfileType.host], currentPosition: _position,
-      maxDistance: 15000);
+          profileTypes: [ProfileType.facilitator, ProfileType.host],
+          currentPosition: _position, maxDistance: 500
+      );
 
       for (var element in usersWithPhoneAndFacility) {
         facilityUsers[element.id] = element;
       }
 
-      AppUtilities.logger.i("${facilityUsers.length} Users with Facilitys found");
+      AppUtilities.logger.i("${facilityUsers.length} Users with Facilities found");
       sortByLocation();
     } catch (e) {
       logger.e(e.toString());
@@ -71,7 +74,6 @@ class DirectoryController extends GetxController {
 
     isLoading = false;
     update();
-
   }
 
   @override

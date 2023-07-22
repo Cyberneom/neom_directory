@@ -6,10 +6,10 @@ import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
-import '../to-work/booking_payment_page.dart';
+import '../directory/directory_controller.dart';
 import '../widgets/booking_comments_widget.dart';
 import '../widgets/booking_widgets.dart';
-import 'directory_controller.dart';
+import 'booking_payment_page.dart';
 
 class BookingPlaceDetails extends StatefulWidget {
   final Place place;
@@ -75,18 +75,18 @@ class BookingPlaceDetailsState extends State<BookingPlaceDetails> {
                 child:
                 Align(
                   alignment: Alignment.topLeft,
-                  child:  Text("LuisSolaz, Guadalajara, México",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,),
+                  child:  Text("Luis Solaz, Guadalajara, México",style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,),
                 ) ,
               ),
               separateurHorizontal(),
               Row(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(25,2,25,0),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(25,2,25,0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text("Solaz",style: TextStyle(fontSize: 22,fontWeight: FontWeight.w600,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,),
                         Text("Host : Luis",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,),
                       ],
@@ -162,9 +162,9 @@ class BookingPlaceDetailsState extends State<BookingPlaceDetails> {
                       width: 45,
                     ),
                     const SizedBox(width: 15,),
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const <Widget>[
+                      children: <Widget>[
                         Text("Luis",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,),
                         Text("September 2021",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,letterSpacing: 0.2),overflow: TextOverflow.ellipsis,)
                       ],
