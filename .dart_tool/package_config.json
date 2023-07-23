@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -27,45 +27,45 @@
     },
     {
       "name": "audioplayers",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers-3.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers-4.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_android-2.0.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_android-3.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_darwin",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_darwin-3.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_darwin-4.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_linux",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_linux-1.0.4",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_linux-2.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-4.0.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_platform_interface-5.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_web-2.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_web-3.1.0",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "audioplayers_windows",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_windows-1.1.3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/audioplayers_windows-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "auto_size_text",
@@ -81,7 +81,7 @@
     },
     {
       "name": "awesome_notifications",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/awesome_notifications-0.7.5-dev.2+1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/awesome_notifications-0.7.5-dev.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -129,19 +129,19 @@
     },
     {
       "name": "cloud_firestore",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore-4.7.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore-4.8.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-5.14.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore_platform_interface-5.15.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.5.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -165,9 +165,9 @@
     },
     {
       "name": "csslib",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/csslib-0.17.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/csslib-1.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.19"
     },
     {
       "name": "cupertino_icons",
@@ -207,7 +207,7 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/ffi-2.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/ffi-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -218,26 +218,56 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "file_picker",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/file_picker-5.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "file_selector_linux",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "file_selector_macos",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.3+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "file_selector_platform_interface",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/file_selector_platform_interface-2.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "file_selector_windows",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "firebase_auth",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth-4.6.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth-4.7.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-6.15.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-6.16.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth_web-5.5.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_auth_web-5.6.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_core-2.13.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_core-2.15.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -249,55 +279,55 @@
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_core_web-2.5.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_core_web-2.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_crashlytics",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_crashlytics-3.3.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_crashlytics-3.3.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_crashlytics_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_crashlytics_platform_interface-3.6.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_crashlytics_platform_interface-3.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging-14.6.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging-14.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging_platform_interface-4.5.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_messaging_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_messaging_web-3.5.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage-11.2.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage-11.2.5",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-4.4.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage_platform_interface-4.4.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "firebase_storage_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage_web-3.6.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/firebase_storage_web-3.6.5",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -321,9 +351,9 @@
     },
     {
       "name": "flutter_cache_manager",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_cache_manager-3.3.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_cache_manager-3.3.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_google_places",
@@ -333,25 +363,25 @@
     },
     {
       "name": "flutter_image_compress",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress-2.0.3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress-2.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_image_compress_common",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_common-1.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_common-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_image_compress_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_platform_interface-1.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_platform_interface-1.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "flutter_image_compress_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_web-0.1.3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_image_compress_web-0.1.3+1",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -369,15 +399,27 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_lints-2.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_lints-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "flutter_localization",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_localization-0.1.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_localizations",
+      "rootUri": "file:///Users/serzen/src/flutter/packages/flutter_localizations",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.7",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.15",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "flutter_rating_bar",
@@ -393,7 +435,7 @@
     },
     {
       "name": "flutter_stripe",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_stripe-9.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/flutter_stripe-9.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -411,13 +453,13 @@
     },
     {
       "name": "font_awesome_flutter",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.4.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.5.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "freezed_annotation",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/freezed_annotation-2.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/freezed_annotation-2.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -429,7 +471,7 @@
     },
     {
       "name": "geocoding_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geocoding_android-2.1.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geocoding_android-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -453,13 +495,13 @@
     },
     {
       "name": "geolocator_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geolocator_android-4.1.7",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geolocator_android-4.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
     {
       "name": "geolocator_apple",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geolocator_apple-2.2.5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/geolocator_apple-2.2.7",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -489,15 +531,15 @@
     },
     {
       "name": "google_api_headers",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_api_headers-1.5.0+1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_api_headers-1.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "google_fonts",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_fonts-4.0.3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_fonts-4.0.4",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "google_identity_services_web",
@@ -506,28 +548,40 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "google_maps",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps-6.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_maps_flutter",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter-2.2.8",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "google_maps_flutter_android",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.4.15",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
-      "name": "google_maps_flutter_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.4.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
       "name": "google_maps_flutter_ios",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.1.13",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.2.3",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_maps_flutter_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.2.5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "google_maps_flutter_web",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "google_maps_webservice",
@@ -537,45 +591,45 @@
     },
     {
       "name": "google_sign_in",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in-6.1.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in-6.1.4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.18",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_ios",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.5.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.6.2",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "google_sign_in_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.0+2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
-      "name": "hashtagable",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/hashtagable-2.1.0",
+      "name": "hashtagable_v3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/hashtagable_v3-3.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.16"
+      "languageVersion": "3.0"
     },
     {
       "name": "html",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/html-0.15.3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/html-0.15.4",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.19"
     },
     {
       "name": "http",
@@ -609,31 +663,85 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker-0.8.7+5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker-0.8.9",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_android-0.8.5+5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_android-0.8.7+4",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "image_picker_for_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_for_web-2.1.10",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_for_web-2.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_ios",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_linux",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_macos",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "image_picker_windows",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "in_app_purchase",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_purchase-3.1.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "in_app_purchase_android",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.0+10",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "in_app_purchase_platform_interface",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_purchase_platform_interface-1.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "in_app_purchase_storekit",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.6+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "in_app_review",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_review-2.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "image_picker_ios",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.6+6",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
-      "name": "image_picker_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.6.2",
+      "name": "in_app_review_platform_interface",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/in_app_review_platform_interface-2.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -645,7 +753,7 @@
     },
     {
       "name": "intl_phone_field",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/intl_phone_field-3.1.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/intl_phone_field-3.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -656,10 +764,16 @@
       "languageVersion": "2.19"
     },
     {
-      "name": "json_annotation",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/json_annotation-4.8.0",
+      "name": "js_wrapping",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/js_wrapping-0.7.4",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/json_annotation-4.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "linkify",
@@ -669,13 +783,13 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/lints-2.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "logger",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/logger-1.3.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/logger-1.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -705,75 +819,81 @@
     },
     {
       "name": "neom_admin",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_admin-aeca0ec229bd47ffc35112891789c98b64cd4896/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_admin-c382f2f3cbd5eb8ba6fb857db17a7e340b361f34/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_bands",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_bands-e24c126a41c9d8c05809e407ae3b3cdc6a37246b/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_bands-62b341de3179daaa2b9a2f047b1a60076ef6bf48/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_commerce",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_commerce-7b5c8850744cd323967bea069124f3a45dab19da/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_commerce-0a0bab536d891d147221eca2e8547bc6b6adf39d/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_commons",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_commons-7d2ccc3625c5b0bb2f7ffd12b11baaa07862af98/",
+      "rootUri": "../../neom_commons",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_events",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_events-f260702207866aa43a8179ba545beb7720cf73da/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_events-5595be5855ea52a2f7b9ce954b98e1f61a3b282d/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "neom_frequencies",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_frequencies-444a4216aee569ff4b8a3f3079099f7708bbdb09/",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_inbox",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_inbox-b20cf3e41468f4318c953f274897f4ff4a32599e/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_inbox-373e9d07abf20c3d596bc5802989049be42e7fc5/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_instruments",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_instruments-682171ab6d1df50d30608065c3ed4a1d9de31bcd/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_instruments-9b55b2407d1dcbd40224eac5017003576895114e/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_itemlists",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_itemlists-da365c8a01d90182d3698a2e635d972facb155d5/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_itemlists-5655240da260c124e1ed2296bd583bb8c849d26b/",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_posts",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_posts-68df4a492fd9d352d49dc5d7916f4176e95810b7/",
+      "rootUri": "../../neom_posts",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_profile",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_profile-f7234084bbbe7f6f3f151b393c0482df52f44ec9/",
+      "rootUri": "../../neom_profile",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "neom_timeline",
-      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_timeline-f4c2e1fd1b9c0437b8aaf41f2a2b0f40a7826da1/",
+      "rootUri": "file:///Users/serzen/.pub-cache/git/neom_timeline-16bf3969ca39b39b3ecdb3b4b21720cde1ba5630/",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "oauth2",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/oauth2-2.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/oauth2-2.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.0"
     },
     {
       "name": "octo_image",
@@ -789,9 +909,9 @@
     },
     {
       "name": "package_info_plus",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/package_info_plus-3.1.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/package_info_plus-4.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "package_info_plus_platform_interface",
@@ -813,33 +933,33 @@
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_android-2.0.22",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_android-2.0.27",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.17"
     },
     {
       "name": "path_provider_foundation",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_foundation-2.1.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_foundation-2.2.4",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_linux",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.7",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_linux-2.1.11",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.5",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "path_provider_windows",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.6",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/path_provider_windows-2.1.7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "pedantic",
@@ -855,9 +975,9 @@
     },
     {
       "name": "petitparser",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/petitparser-5.1.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/petitparser-5.4.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "platform",
@@ -867,15 +987,9 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.5",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "process",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/process-4.2.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "qr",
@@ -909,7 +1023,7 @@
     },
     {
       "name": "rubber",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/rubber-1.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/rubber-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -920,8 +1034,14 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sanitize_html",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sanitize_html-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "share_plus",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/share_plus-7.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/share_plus-7.0.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -933,51 +1053,51 @@
     },
     {
       "name": "shared_preferences",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences-2.1.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_android-2.1.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_foundation",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.2.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.2",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_linux",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_web-2.1.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "shared_preferences_windows",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "sign_in_with_apple",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0-dev.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "sign_in_with_apple_platform_interface",
@@ -1017,13 +1137,13 @@
     },
     {
       "name": "sqflite",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sqflite-2.2.4+1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sqflite-2.2.8+4",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "sqflite_common",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sqflite_common-2.4.2+2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/sqflite_common-2.4.5+1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1053,25 +1173,25 @@
     },
     {
       "name": "stripe_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_android-9.2.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_android-9.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "stripe_ios",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_ios-9.2.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_ios-9.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "stripe_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.2.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
     {
       "name": "synchronized",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/synchronized-3.0.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/synchronized-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1089,7 +1209,7 @@
     },
     {
       "name": "timeago",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/timeago-3.4.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/timeago-3.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -1101,33 +1221,33 @@
     },
     {
       "name": "typed_data",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/typed_data-1.3.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/typed_data-1.3.2",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "upgrader",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/upgrader-6.2.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/upgrader-6.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher-6.1.11",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher-6.1.12",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.37",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
-      "name": "url_launcher_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_android-6.0.23",
-      "packageUri": "lib/",
-      "languageVersion": "2.14"
-    },
-    {
       "name": "url_launcher_ios",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_ios-6.0.18",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_ios-6.1.4",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "url_launcher_linux",
@@ -1137,27 +1257,27 @@
     },
     {
       "name": "url_launcher_macos",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_macos-3.0.6",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "url_launcher_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.1.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.1.3",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "url_launcher_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.17",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_web-2.0.18",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "url_launcher_windows",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.6",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/url_launcher_windows-3.0.7",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "uuid",
@@ -1185,33 +1305,33 @@
     },
     {
       "name": "video_player",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player-2.6.1",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player-2.7.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "video_player_android",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_android-2.3.10",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_android-2.4.9",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "video_player_avfoundation",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.3.8",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.4.9",
       "packageUri": "lib/",
-      "languageVersion": "2.14"
+      "languageVersion": "2.18"
     },
     {
       "name": "video_player_platform_interface",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_platform_interface-6.1.0",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_platform_interface-6.2.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "2.18"
     },
     {
       "name": "video_player_web",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_web-2.0.13",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/video_player_web-2.0.16",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "win32",
@@ -1227,15 +1347,15 @@
     },
     {
       "name": "xdg_directories",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/xdg_directories-0.2.0+3",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/xdg_directories-1.0.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     },
     {
       "name": "xml",
-      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/xml-6.2.2",
+      "rootUri": "file:///Users/serzen/.pub-cache/hosted/pub.dev/xml-6.3.0",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "2.19"
     },
     {
       "name": "youtube_player_flutter",
@@ -1250,7 +1370,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-07-22T20:42:04.047702Z",
+  "generated": "2023-07-23T17:11:25.409597Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }
