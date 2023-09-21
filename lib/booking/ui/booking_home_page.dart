@@ -50,9 +50,9 @@ class BookingHomePage extends StatelessWidget {
                               Center(
                                 child: Text(_.address.country.toLowerCase().tr.capitalize!,
                                   style: TextStyle(
-                                    fontSize: 30,
-                                    fontWeight:FontWeight.bold,
-                                    color: AppColor.main75,
+                                    fontSize: 40,
+                                    fontWeight:FontWeight.w900,
+                                    color: AppColor.getMain(),
                                     //foreground: GigAppTheme.getTextForeGround(),
                                   ),
                                 ),

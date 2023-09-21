@@ -58,8 +58,9 @@ class DirectoryController extends GetxController implements DirectoryService{
       _position = await GeoLocatorController().getCurrentPosition();
       List<AppUser> usersWithPhoneAndFacility = await UserFirestore().getWithParameters(
           needsPhone: true, includeProfile: true,
-          profileTypes: [ProfileType.facilitator, ProfileType.host],
-          currentPosition: _position, maxDistance: 500
+          profileTypes: [ProfileType.facilitator, ProfileType.host, ProfileType.instrumentist, ProfileType.band],
+          usageReasons: [UsageReason.professional, UsageReason.job],
+          currentPosition: _position, maxDistance: 1500
       );
 
       for (var element in usersWithPhoneAndFacility) {

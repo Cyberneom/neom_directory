@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/core/utils/app_color.dart';
+import 'package:neom_commons/core/utils/app_theme.dart';
 import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
@@ -21,7 +22,7 @@ class DirectoryPage extends StatelessWidget {
         backgroundColor: AppColor.main75,
         body: Obx(()=>SafeArea(
           child: _.isLoading ? const Center(child: CircularProgressIndicator())
-              : ListView.separated(
+              : _.sortedProfileLocation.isNotEmpty ? ListView.separated(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               separatorBuilder:  (context, index) => const Divider(),
@@ -29,8 +30,17 @@ class DirectoryPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return DirectoryFacility(_.sortedProfileLocation.values.elementAt(index),
                   distanceBetween: _.sortedProfileLocation.keys.elementAt(index).round().toString(),);
-              }),
-        ),),
+              }) : Center(
+                  child:SizedBox(
+                    width: AppTheme.fullWidth(context)*0.75,
+                    child:  Text(AppTranslationConstants.noNearResultsWereFound.tr,
+                    style: AppTheme.primaryTitleText,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+          ),
+        )
+        )
       )
     );
   }

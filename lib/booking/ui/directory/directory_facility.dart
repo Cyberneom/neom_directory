@@ -174,7 +174,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                             children: [
                               const Icon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
                               AppTheme.widthSpace5,
-                              Text("${widget.distanceBetween} KM",
+                              Text(int.parse(widget.distanceBetween) <= 2 ? AppTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
                                   style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.white
