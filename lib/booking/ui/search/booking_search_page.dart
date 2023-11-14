@@ -36,12 +36,12 @@ class BookingSearchPage extends StatelessWidget {
                       padding: const EdgeInsets.all(2),
                       child: CheckboxListTile(
                           activeColor: AppColor.bondiBlue,
-                          title: Text(facility.value.tr.capitalizeFirst!),
+                          title: Text(facility.value.tr.capitalizeFirst),
                           value: false,
                           onChanged: (value){
                             AppUtilities.showSnackBar(
-                              MessageTranslationConstants.underConstruction.tr,
-                              MessageTranslationConstants.featureAvailableSoon.tr,
+                              title: MessageTranslationConstants.underConstruction.tr,
+                              message: MessageTranslationConstants.featureAvailableSoon.tr,
                             );
                           }),
                     ),

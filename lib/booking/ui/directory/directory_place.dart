@@ -77,7 +77,7 @@ class BookingPlaceState extends State<DirectoryPlace> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                Text(widget.facilityProfile.name.capitalize!,
+                Text(widget.facilityProfile.name.capitalize,
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
@@ -90,7 +90,7 @@ class BookingPlaceState extends State<DirectoryPlace> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(widget.facilityProfile.mainFeature.
-                        replaceRange(0, 1, widget.facilityProfile.mainFeature.substring(0,1).toLowerCase()).tr.capitalizeFirst!,
+                        replaceRange(0, 1, widget.facilityProfile.mainFeature.substring(0,1).toLowerCase()).tr.capitalizeFirst,
                           style: const TextStyle(fontWeight: FontWeight.w400),),
                         Text(widget.facilityProfile.aboutMe,
                           overflow: TextOverflow.ellipsis,),

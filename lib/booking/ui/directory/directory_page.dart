@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neom_commons/core/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/app_theme.dart';
@@ -21,15 +22,15 @@ class DirectoryPage extends StatelessWidget {
         appBar: AppBarChild(title: AppTranslationConstants.businessDirectory.tr,color: Colors.transparent),
         backgroundColor: AppColor.main75,
         body: Obx(()=>SafeArea(
-          child: _.isLoading ? const Center(child: CircularProgressIndicator())
-              : _.sortedProfileLocation.isNotEmpty ? ListView.separated(
+          child: _.isLoading.value ? const AppCircularProgressIndicator()
+              : _.sortedProfileLocation.value.isNotEmpty ? ListView.separated(
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               separatorBuilder:  (context, index) => const Divider(),
-              itemCount: _.sortedProfileLocation.length,
+              itemCount: _.sortedProfileLocation.value.length,
               itemBuilder: (context, index) {
-                return DirectoryFacility(_.sortedProfileLocation.values.elementAt(index),
-                  distanceBetween: _.sortedProfileLocation.keys.elementAt(index).round().toString(),);
+                return DirectoryFacility(_.sortedProfileLocation.value.values.elementAt(index),
+                  distanceBetween: _.sortedProfileLocation.value.keys.elementAt(index).round().toString(),);
               }) : Center(
                   child:SizedBox(
                     width: AppTheme.fullWidth(context)*0.75,

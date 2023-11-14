@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:neom_commons/core/domain/model/place_commodity.dart';
 import 'package:neom_commons/core/domain/model/price.dart';
+import 'package:neom_commons/core/ui/widgets/handled_cached_network_image.dart';
 import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/constants/app_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_route_constants.dart';
@@ -13,11 +13,9 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import '../directory/directory_controller.dart';
 import '../to-work/booking_description_details_page.dart';
 
-GestureDetector buildScrollActivities(String text,String imgUri){
+GestureDetector buildScrollActivities(String text,String imgUri) {
   return GestureDetector(
-    onTap: (){
-      Get.toNamed(AppRouteConstants.directory);
-    },
+    onTap: () => Get.toNamed(AppRouteConstants.directory),
     child: Padding(
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: Column(
@@ -26,12 +24,17 @@ GestureDetector buildScrollActivities(String text,String imgUri){
             color: Colors.white,
             height: 250,
             width: 350,
-            child: CachedNetworkImage(imageUrl: imgUri, fit: BoxFit.fitHeight,),
+            child: HandledCachedNetworkImage(imgUri, fit: BoxFit.fitHeight,),
         ),
         Container(
             width: double.infinity,
             color: AppColor.bondiBlue,
-            child: Text(text,style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold),textAlign: TextAlign.center,)
+            child: Text(text,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            )
         ),
       ],
     ),),
@@ -52,7 +55,6 @@ SizedBox buildImageSlider(BuildContext context, PageController _, List<String> g
   );
 }
 
-
 Align buildWidgetImageIndicator(BuildContext context, List<String> galleryImgUrls, int currentIndex) {
   return Align(
     alignment: Alignment.bottomCenter,
@@ -67,7 +69,6 @@ Align buildWidgetImageIndicator(BuildContext context, List<String> galleryImgUrl
     ),
   );
 }
-
 
 Align buildCloseWidget(BuildContext context) {
   return Align(
@@ -88,7 +89,6 @@ Align buildCloseWidget(BuildContext context) {
     ),
   );
 }
-
 
 Widget buildContainerPrice(Price price) {
   return Align(
@@ -113,7 +113,6 @@ Widget buildContainerPrice(Price price) {
   );
 }
 
-
 Column buildEquipment(PlaceCommodity commodity)  {
   return Column(
       children: <Widget>[
@@ -133,7 +132,6 @@ Column buildEquipment(PlaceCommodity commodity)  {
   );
 }
 
-
 Padding getSingleEquipment(String title, IconData icon, bool isActive) {
   TextStyle bare= const TextStyle(color:Colors.grey,decoration: TextDecoration.lineThrough);
   TextStyle active= const TextStyle(color:Colors.white);
@@ -149,7 +147,6 @@ Padding getSingleEquipment(String title, IconData icon, bool isActive) {
   );
 }
 
-
 Container separateurHorizontal() {
   return Container(
     margin: const EdgeInsets.all(15),
@@ -158,7 +155,6 @@ Container separateurHorizontal() {
     color: Colors.white70,
   );
 }
-
 
 Column buildDescText(BuildContext context) {
   int maxLines1=3;
@@ -194,7 +190,6 @@ Column buildDescText(BuildContext context) {
   );
 }
 
-
 Container buildHeartWidget(BuildContext context, DirectoryController _) {
   return Container(
       margin: const EdgeInsets.only(right: 13,top: 40),
@@ -220,7 +215,6 @@ Container buildHeartWidget(BuildContext context, DirectoryController _) {
       )
   );
 }
-
 
 Padding buildDescreption(BuildContext context) {
   return const Padding(

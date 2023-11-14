@@ -12,45 +12,26 @@ import '../../domain/use_cases/directory_service.dart';
 
 class DirectoryController extends GetxController implements DirectoryService{
 
-  var logger = AppUtilities.logger;
   final userController = Get.find<UserController>();
-
-  final RxBool _isButtonDisabled = false.obs;
-  bool get isButtonDisabled => _isButtonDisabled.value;
-  set isButtonDisabled(bool isButtonDisabled) => _isButtonDisabled.value = isButtonDisabled;
-
-  final RxBool _isLoading = true.obs;
-  bool get isLoading => _isLoading.value;
-  set isLoading(bool isLoading) => _isLoading.value = isLoading;
-
-  final RxBool _isUploading = false.obs;
-  bool get isUploading => _isUploading.value;
-  set isUploading(bool isUploading) => _isUploading.value = isUploading;
-
-  TextEditingController locationController = TextEditingController();
-  TextEditingController captionController = TextEditingController();
 
   AppProfile profile = AppProfile();
   Address address = Address();
+  TextEditingController locationController = TextEditingController();
+  TextEditingController captionController = TextEditingController();
+
+  final RxBool isButtonDisabled = false.obs;
+  final RxBool isLoading = true.obs;
+  final RxBool isUploading = false.obs;
+  final RxMap<String, AppUser> facilityUsers = <String, AppUser>{}.obs;
+  final RxMap<String, AppUser> placeUsers = <String, AppUser>{}.obs;
+  final Rx<SplayTreeMap<double, AppUser>> sortedProfileLocation = SplayTreeMap<double, AppUser>().obs;
 
   late Position _position;
-
-  final RxMap<String, AppUser> _facilityUsers = <String, AppUser>{}.obs;
-  Map<String, AppUser> get facilityUsers => _facilityUsers;
-  set facilityUsers(Map<String, AppUser> facilityUsers) => _facilityUsers.value = facilityUsers;
-
-  final RxMap<String, AppUser> _placeUsers = <String, AppUser>{}.obs;
-  Map<String, AppUser> get placeUsers => _placeUsers;
-  set placeUsers(Map<String, AppUser> placeUsers) => _placeUsers.value = placeUsers;
-
-  final Rx<SplayTreeMap<double, AppUser>> _sortedProfileLocation = SplayTreeMap<double, AppUser>().obs;
-  SplayTreeMap<double, AppUser> get sortedProfileLocation => _sortedProfileLocation.value;
-  set sortedProfileLocation(SplayTreeMap<double, AppUser> sortedProfileLocation) => _sortedProfileLocation.value = sortedProfileLocation;
 
   @override
   void onInit() async {
     super.onInit();
-    logger.d("Directory Controller Init");
+    AppUtilities.logger.d("Directory Controller Init");
 
     profile = userController.profile;
 
@@ -60,7 +41,7 @@ class DirectoryController extends GetxController implements DirectoryService{
           needsPhone: true, includeProfile: true,
           profileTypes: [ProfileType.facilitator, ProfileType.host, ProfileType.instrumentist, ProfileType.band],
           usageReasons: [UsageReason.professional, UsageReason.job],
-          currentPosition: _position, maxDistance: 1500
+          currentPosition: _position, maxDistance: 15000
       );
 
       for (var element in usersWithPhoneAndFacility) {
@@ -70,26 +51,26 @@ class DirectoryController extends GetxController implements DirectoryService{
       AppUtilities.logger.i("${facilityUsers.length} Users with Facilities found");
       sortByLocation();
     } catch (e) {
-      logger.e(e.toString());
+      AppUtilities.logger.e(e.toString());
     }
 
-    isLoading = false;
+    isLoading.value = false;
     update();
   }
 
   @override
   void sortByLocation() {
-    sortedProfileLocation.clear();
+    sortedProfileLocation.value.clear();
     facilityUsers.forEach((key, usermate) {
       double distanceBetweenProfiles = AppUtilities.distanceBetweenPositions(
           userController.profile.position!,
           usermate.profiles.first.position!);
 
       distanceBetweenProfiles = distanceBetweenProfiles + Random().nextDouble();
-      sortedProfileLocation[distanceBetweenProfiles] = usermate;
+      sortedProfileLocation.value[distanceBetweenProfiles] = usermate;
     });
 
-    logger.i("Sortered Users ${sortedProfileLocation.length}");
+    AppUtilities.logger.i("Sortered Users ${sortedProfileLocation.value.length}");
     update([AppPageIdConstants.search]);
   }
 

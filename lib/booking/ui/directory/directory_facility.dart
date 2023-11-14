@@ -63,7 +63,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                 facilityProfile.aboutMe.isNotEmpty ?
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(facilityProfile.aboutMe.capitalizeFirst!)
+                    child: Text(facilityProfile.aboutMe.capitalizeFirst)
                 ) : Container(),
               ],
             ),
@@ -132,7 +132,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                                     ? Get.toNamed(AppRouteConstants.profile)
                                     : Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
                                 child: Text(facilityProfile.name.length < AppConstants.maxProfileNameLength
-                                    ? facilityProfile.name.capitalize ?? ""
+                                    ? facilityProfile.name.capitalize
                                     : "${facilityProfile.name.substring(0, AppConstants.maxProfileNameLength)}...",
                                     style: const TextStyle(
                                       fontSize: 15,
@@ -149,8 +149,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                             const Icon(Icons.location_on, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
                             Text(facilityProfile.address.length <= AppConstants.maxLocationNameLength
-                                ? facilityProfile.address.capitalize!
-                                : "${facilityProfile.address.substring(0,AppConstants.maxLocationNameLength).capitalize}...",
+                                ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0,AppConstants.maxLocationNameLength).capitalize}...",
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white
@@ -162,7 +161,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                           children: [
                             const Icon(Icons.room_service, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
-                            Text(facilityProfile.mainFeature.tr.capitalizeFirst!,
+                            Text(facilityProfile.mainFeature.tr.capitalizeFirst,
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white

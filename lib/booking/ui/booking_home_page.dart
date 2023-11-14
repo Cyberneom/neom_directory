@@ -21,7 +21,7 @@ class BookingHomePage extends StatelessWidget {
         id: AppPageIdConstants.booking,
         init: BookingController(),
         builder: (_) => Scaffold(
-          backgroundColor: AppColor.main75,
+          backgroundColor: AppColor.main50,
           // appBar: AppBarBooking(),
           body: SingleChildScrollView(
               child: Container(
@@ -40,7 +40,6 @@ class BookingHomePage extends StatelessWidget {
                                  fit: BoxFit.fill,
                                colorBlendMode: BlendMode.colorBurn,
                                filterQuality: FilterQuality.high,
-
                              ),
                           ),
                           Column(
@@ -48,7 +47,7 @@ class BookingHomePage extends StatelessWidget {
                             children: <Widget>[
                               AppTheme.heightSpace20,
                               Center(
-                                child: Text(_.address.country.toLowerCase().tr.capitalize!,
+                                child: Text(_.address.country.toLowerCase().tr.capitalize,
                                   style: TextStyle(
                                     fontSize: 40,
                                     fontWeight:FontWeight.w900,
@@ -60,10 +59,8 @@ class BookingHomePage extends StatelessWidget {
                             ],
                           ),
                           Positioned(
-                            top: 0,
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
+                            top: 0, bottom: 0,
+                            left: 0, right: 0,
                             child: MaterialButton(
                               onPressed: () {
                                 Get.toNamed(AppRouteConstants.directory);

@@ -21,7 +21,7 @@ class AppBarBooking extends StatelessWidget implements PreferredSizeWidget {
     color ??= AppColor.appBar;
 
     return AppBar(
-      title: Text(title.capitalizeFirst ?? "", style: TextStyle(color: Colors.white.withOpacity(0.8),
+      title: Text(title.capitalizeFirst, style: TextStyle(color: Colors.white.withOpacity(0.8),
           fontWeight: FontWeight.bold),
       ),
       actions: [
