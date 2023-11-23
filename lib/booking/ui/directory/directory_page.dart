@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neom_commons/core/app_flavour.dart';
 import 'package:neom_commons/core/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:neom_commons/core/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/app_theme.dart';
 import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
+import 'package:neom_commons/core/utils/enums/app_in_use.dart';
 
 import 'directory_controller.dart';
 import 'directory_facility.dart';
@@ -19,10 +21,10 @@ class DirectoryPage extends StatelessWidget {
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (_) => Scaffold(
-        appBar: AppBarChild(title: AppTranslationConstants.businessDirectory.tr,color: Colors.transparent),
+        appBar: AppFlavour.appInUse == AppInUse.g ? AppBarChild(title: AppTranslationConstants.businessDirectory.tr,color: Colors.transparent) : null,
         backgroundColor: AppColor.main75,
         body: Obx(()=>SafeArea(
-          child: _.isLoading.value ? const AppCircularProgressIndicator()
+          child: _.isLoading.value ? AppCircularProgressIndicator(subtitle: AppTranslationConstants.businessDirectory.tr,)
               : _.sortedProfileLocation.value.isNotEmpty ? ListView.separated(
               padding: EdgeInsets.zero,
               shrinkWrap: true,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:neom_commons/core/ui/widgets/read_more_container.dart';
 import 'package:neom_commons/neom_commons.dart';
 
 import 'directory_controller.dart';
@@ -63,7 +64,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                 facilityProfile.aboutMe.isNotEmpty ?
                 Align(
                     alignment: Alignment.centerLeft,
-                    child: Text(facilityProfile.aboutMe.capitalizeFirst)
+                    child: ReadMoreContainer(text: facilityProfile.aboutMe.capitalizeFirst, fontSize: 14,)
                 ) : Container(),
               ],
             ),

@@ -26,7 +26,7 @@ class DirectoryController extends GetxController implements DirectoryService{
   final RxMap<String, AppUser> placeUsers = <String, AppUser>{}.obs;
   final Rx<SplayTreeMap<double, AppUser>> sortedProfileLocation = SplayTreeMap<double, AppUser>().obs;
 
-  late Position _position;
+  Position? _position;
 
   @override
   void onInit() async {
@@ -36,12 +36,25 @@ class DirectoryController extends GetxController implements DirectoryService{
     profile = userController.profile;
 
     try {
+
+    } catch (e) {
+      AppUtilities.logger.e(e.toString());
+    }
+
+  }
+
+  @override
+  void onReady() async {
+    super.onReady();
+    AppUtilities.logger.d("onReady");
+    try {
       _position = await GeoLocatorController().getCurrentPosition();
       List<AppUser> usersWithPhoneAndFacility = await UserFirestore().getWithParameters(
           needsPhone: true, includeProfile: true,
-          profileTypes: [ProfileType.facilitator, ProfileType.host, ProfileType.instrumentist, ProfileType.band],
+          profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
+              : [ProfileType.facilitator, ProfileType.host,  ProfileType.band],
           usageReasons: [UsageReason.professional, UsageReason.job],
-          currentPosition: _position, maxDistance: 15000
+          currentPosition: _position, maxDistance: 150000
       );
 
       for (var element in usersWithPhoneAndFacility) {
@@ -62,14 +75,15 @@ class DirectoryController extends GetxController implements DirectoryService{
   void sortByLocation() {
     sortedProfileLocation.value.clear();
     facilityUsers.forEach((key, usermate) {
-      double distanceBetweenProfiles = AppUtilities.distanceBetweenPositions(
-          userController.profile.position!,
-          usermate.profiles.first.position!);
+      if(usermate.profiles.isNotEmpty) {
+        double distanceBetweenProfiles = AppUtilities.distanceBetweenPositions(
+            userController.profile.position!,
+            usermate.profiles.first.position!);
 
-      distanceBetweenProfiles = distanceBetweenProfiles + Random().nextDouble();
-      sortedProfileLocation.value[distanceBetweenProfiles] = usermate;
+        distanceBetweenProfiles = distanceBetweenProfiles + Random().nextDouble();
+        sortedProfileLocation.value[distanceBetweenProfiles] = usermate;
+      }
     });
-
     AppUtilities.logger.i("Sortered Users ${sortedProfileLocation.value.length}");
     update([AppPageIdConstants.search]);
   }
