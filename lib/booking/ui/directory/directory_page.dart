@@ -17,14 +17,16 @@ class DirectoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.delete<DirectoryController>();
     return GetBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (_) => Scaffold(
-        appBar: AppFlavour.appInUse == AppInUse.g ? AppBarChild(title: AppTranslationConstants.businessDirectory.tr,color: Colors.transparent) : null,
+        appBar: AppFlavour.appInUse == AppInUse.g ? AppBarChild(title: AppTranslationConstants.businessDirectory.tr, color: Colors.transparent)
+            : _.isAdminCenter ? AppBarChild(title: AppTranslationConstants.usersDirectory.tr, color: Colors.transparent) : null,
         backgroundColor: AppColor.main75,
         body: Obx(()=>SafeArea(
-          child: _.isLoading.value ? AppCircularProgressIndicator(subtitle: AppTranslationConstants.businessDirectory.tr,)
+          child: _.isLoading.value ? AppCircularProgressIndicator(subtitle: _.isAdminCenter ? AppTranslationConstants.usersDirectory : AppTranslationConstants.businessDirectory.tr,)
               : _.sortedProfileLocation.value.isNotEmpty ? ListView.separated(
               padding: EdgeInsets.zero,
               shrinkWrap: true,

@@ -13,11 +13,11 @@ import 'directory_controller.dart';
 class DirectoryFacility extends StatefulWidget {
 
   bool liked;
-  final AppUser facilityUser;
+  final AppProfile facilityProfile;
   int _currentIndex = 0;
   String distanceBetween;
 
-  DirectoryFacility(this.facilityUser, {this.liked = false, this.distanceBetween = "", Key? key}) : super(key: key);
+  DirectoryFacility(this.facilityProfile, {this.liked = false, this.distanceBetween = "", Key? key}) : super(key: key);
 
   @override
   DirectoryFacilityState createState() => DirectoryFacilityState();
@@ -28,11 +28,11 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
   AppProfile facilityProfile = AppProfile();
   @override
   Widget build(BuildContext context) {
-    facilityProfile = widget.facilityUser.profiles.first;
+    facilityProfile = widget.facilityProfile;
 
     return  GetBuilder<DirectoryController>(
-        id: AppPageIdConstants.directory,
-    builder: (_) => Container(
+      id: AppPageIdConstants.directory,
+      builder: (_) => Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(style: BorderStyle.solid, color: Colors.grey, width: 0.5)
@@ -44,7 +44,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                Container(
+                if(_.needsPosts) Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -57,15 +57,15 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                     ],
                   ),
                 ),
-                const Divider(thickness: 1),
+                if(_.needsPosts) const Divider(thickness: 1),
                 facilityAvatarSection(context, _.userController.profile, facilityProfile,
-                    role: _.userController.user!.userRole),
+                    isAdminCenter: _.isAdminCenter),
                 AppTheme.heightSpace10,
-                facilityProfile.aboutMe.isNotEmpty ?
-                Align(
+                if(facilityProfile.aboutMe.isNotEmpty)
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: ReadMoreContainer(text: facilityProfile.aboutMe.capitalizeFirst, fontSize: 14,)
-                ) : Container(),
+                  ),
               ],
             ),
           ),
@@ -96,8 +96,8 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  Widget facilityAvatarSection(BuildContext context, AppProfile profile,  AppProfile facilityProfile,
-      {bool showDots = true, UserRole role = UserRole.subscriber}) {
+  Widget facilityAvatarSection(BuildContext context, AppProfile profile, AppProfile facilityProfile,
+      {bool showDots = true, bool isAdminCenter = false}) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -106,21 +106,21 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  facilityProfile.photoUrl.isNotEmpty ?
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
-                        child: CircleAvatar(
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: CachedNetworkImageProvider(
-                              facilityProfile.photoUrl.isNotEmpty ? facilityProfile.photoUrl
-                                  : AppFlavour.getNoImageUrl(),),
-                            radius: 20),
-                      ),
-                      AppTheme.widthSpace10,
-                    ],
-                  ) : Container(),
+                  if(facilityProfile.photoUrl.isNotEmpty)
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              backgroundImage: CachedNetworkImageProvider(
+                                facilityProfile.photoUrl.isNotEmpty ? facilityProfile.photoUrl
+                                    : AppFlavour.getNoImageUrl(),),
+                              radius: 20),
+                        ),
+                        AppTheme.widthSpace10,
+                      ],
+                    ),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
@@ -144,20 +144,17 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                               AppTheme.widthSpace10,
                             ]
                         ),
-                        facilityProfile.address.isNotEmpty ?
-                        Row(
-                          children: [
-                            const Icon(Icons.location_on, color: Colors.white, size: 12,),
-                            AppTheme.widthSpace5,
-                            Text(facilityProfile.address.length <= AppConstants.maxLocationNameLength
-                                ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0,AppConstants.maxLocationNameLength).capitalize}...",
-                                style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white
-                                )
-                            ),
-                          ],
-                        ) : Container(),
+                        if(facilityProfile.address.isNotEmpty)
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on, color: Colors.white, size: 12,),
+                              AppTheme.widthSpace5,
+                              Text(facilityProfile.address.length <= AppConstants.maxLocationNameLength
+                                  ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0,AppConstants.maxLocationNameLength).capitalize}...",
+                                  style: const TextStyle(fontSize: 12, color: Colors.white)
+                              ),
+                            ],
+                          ),
                         Row(
                           children: [
                             const Icon(Icons.room_service, color: Colors.white, size: 12,),
@@ -171,16 +168,16 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                           ]
                         ),
                         Row(
-                            children: [
-                              const Icon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
-                              AppTheme.widthSpace5,
-                              Text(int.parse(widget.distanceBetween) <= 2 ? AppTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white
-                                  )
-                              )
-                            ]
+                          children: [
+                            const Icon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
+                            AppTheme.widthSpace5,
+                            Text(int.parse(widget.distanceBetween) <= 2 ? AppTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white
+                                )
+                            )
+                          ]
                         ),
                       ]
                   )
@@ -196,8 +193,14 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   child: Text(AppTranslationConstants.toContact.tr,
                     style: const TextStyle(color: Colors.white),),
                   onTap: () {
-                    String message = '${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${AppTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
-                    CoreUtilities.launchWhatsappURL(widget.facilityUser.countryCode+widget.facilityUser.phoneNumber, message);
+                    String message = '';
+                    if(isAdminCenter) {
+                      message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgC.tr}';
+                    } else {
+                      message = '${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${AppTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
+                    }
+
+                    CoreUtilities.launchWhatsappURL(widget.facilityProfile.phoneNumber, message);
                   },
                 ),
               ),
