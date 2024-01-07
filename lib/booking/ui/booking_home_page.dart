@@ -124,7 +124,8 @@ class BookingHomePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                    AppTheme.heightSpace40,
                   ],
                 ),
               ),

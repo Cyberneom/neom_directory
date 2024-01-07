@@ -1,5 +1,3 @@
-import 'dart:collection';
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +12,26 @@ class DirectoryController extends GetxController implements DirectoryService{
 
   final userController = Get.find<UserController>();
 
+  ProfileFirestore profileFirestore = ProfileFirestore();
+  final ScrollController directoryScrollController = ScrollController();
+  bool isLoadingNextDirectory = false;
+
   AppProfile profile = AppProfile();
   Position? position;
-  Address address = Address();
-  TextEditingController locationController = TextEditingController();
-  TextEditingController captionController = TextEditingController();
+  // Address address = Address();
+  // TextEditingController locationController = TextEditingController();
+  // TextEditingController captionController = TextEditingController();
   bool needsPosts = false;
   bool isAdminCenter = false;
 
   final RxBool isButtonDisabled = false.obs;
   final RxBool isLoading = true.obs;
   final RxBool isUploading = false.obs;
-  final RxMap<String, AppProfile> facilityUsers = <String, AppProfile>{}.obs;
-  final RxMap<String, AppProfile> placeUsers = <String, AppProfile>{}.obs;
-  final Rx<SplayTreeMap<double, AppProfile>> sortedProfileLocation = SplayTreeMap<double, AppProfile>().obs;
+  final RxMap<double, AppProfile> profilesToShow = <double, AppProfile>{}.obs;
+
+  //TODO TO USE WHEN FILTERING
+  // final RxMap<String, AppProfile> facilityProfiles = <String, AppProfile>{}.obs;
+  // final RxMap<String, AppProfile> placeProfiles = <String, AppProfile>{}.obs;
 
   @override
   void onInit() async {
@@ -39,6 +43,8 @@ class DirectoryController extends GetxController implements DirectoryService{
     if(Get.arguments != null && Get.arguments.isNotEmpty) {
       isAdminCenter = Get.arguments[0] ?? false;
     }
+
+    directoryScrollController.addListener(_directoryScrollListener);
 
     try {
       needsPosts = !isAdminCenter;
@@ -59,15 +65,18 @@ class DirectoryController extends GetxController implements DirectoryService{
       List<AppProfile> profilesWithPhoneAndFacility = [];
 
       if(!isAdminCenter) {
-        profilesWithPhoneAndFacility = await ProfileFirestore().getWithParameters(
+        profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
             needsPhone: true, needsPosts: needsPosts,
             usageReasons: [UsageReason.professional, UsageReason.job],
-            profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
-                : [ProfileType.facilitator, ProfileType.host], currentPosition: position, maxDistance: 3000
+            profileTypes: AppFlavour.appInUse == AppInUse.g
+                ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
+                : [ProfileType.facilitator, ProfileType.host],
+            currentPosition: position,
+            maxDistance: 2000, limit: 10
         );
       } else {
-        profilesWithPhoneAndFacility = await ProfileFirestore().getWithParameters(
-          needsPhone: true, needsPosts: needsPosts,
+        profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
+          needsPhone: true, currentPosition: position
         );
       }
 
@@ -75,12 +84,7 @@ class DirectoryController extends GetxController implements DirectoryService{
       Duration duration = endTime.difference(startTime);
       AppUtilities.logger.i('Query took ${duration.inSeconds} seconds');
 
-      for (var element in profilesWithPhoneAndFacility) {
-        facilityUsers[element.id] = element;
-      }
-
-      AppUtilities.logger.i("${facilityUsers.length} Users with Facilities found");
-      sortByLocation();
+      profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
     } catch (e) {
       AppUtilities.logger.e(e.toString());
     }
@@ -89,19 +93,47 @@ class DirectoryController extends GetxController implements DirectoryService{
     update();
   }
 
-  @override
-  void sortByLocation() {
-    sortedProfileLocation.value.clear();
-    facilityUsers.forEach((key, mate) {
-      double distanceBetweenProfiles = AppUtilities.distanceBetweenPositions(
-          userController.profile.position!,
-          mate.position!);
+  void _directoryScrollListener() async {
+    try {
 
-      distanceBetweenProfiles = distanceBetweenProfiles + Random().nextDouble();
-      sortedProfileLocation.value[distanceBetweenProfiles] = mate;
-    });
-    AppUtilities.logger.i("Sorted Users ${sortedProfileLocation.value.length}");
-    update([AppPageIdConstants.search]);
+      double maxScrollExtent = directoryScrollController.position.maxScrollExtent;
+
+      if (directoryScrollController.offset >= maxScrollExtent
+          && !directoryScrollController.position.outOfRange
+          && !isLoadingNextDirectory
+      ) {
+        AppUtilities.logger.d("Directory Bottom Reached");
+        isLoadingNextDirectory = true;
+        update([AppPageIdConstants.directory]);
+
+        List<AppProfile> nextProfiles = [];
+        if(!isAdminCenter) {
+          nextProfiles = await profileFirestore.getWithParameters(
+              needsPhone: true, needsPosts: needsPosts,
+              usageReasons: [UsageReason.professional, UsageReason.job],
+              profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
+                  : [ProfileType.facilitator, ProfileType.host], currentPosition: position, maxDistance: 2000, limit: 10, isFirstCall: false,
+          );
+        } else {
+          nextProfiles = await profileFirestore.getWithParameters(
+            needsPhone: true,
+          );
+        }
+
+        AppUtilities.logger.i("${nextProfiles.length} next Profiles with Facilities found");
+        profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, nextProfiles));
+        isLoadingNextDirectory = false;
+      }
+
+      if (directoryScrollController.offset <= directoryScrollController.position.minScrollExtent &&
+          !directoryScrollController.position.outOfRange) {
+        AppUtilities.logger.d("Scrolling cool");
+      }
+    } catch (e) {
+      AppUtilities.logger.e(e.toString());
+    }
+
+    update([AppPageIdConstants.directory]);
   }
 
 }

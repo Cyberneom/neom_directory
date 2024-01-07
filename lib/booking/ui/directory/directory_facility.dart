@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:neom_commons/core/ui/widgets/handled_cached_network_image.dart';
 import 'package:neom_commons/core/ui/widgets/read_more_container.dart';
 import 'package:neom_commons/neom_commons.dart';
 
@@ -87,9 +88,8 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
           return GestureDetector(
             onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facility.id),
             child: ClipRRect(
-              child: CachedNetworkImage(
-                imageUrl: facility.facilities!.values.first.galleryImgUrls.elementAt(index),
-                fit: BoxFit.fitWidth
+              child: HandledCachedNetworkImage(facility.facilities!.values.first.galleryImgUrls.elementAt(index),
+                fit: BoxFit.fitWidth, enableFullScreen: false,
               )
           ),);
         }

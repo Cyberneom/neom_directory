@@ -25,25 +25,33 @@ class DirectoryPage extends StatelessWidget {
         appBar: AppFlavour.appInUse == AppInUse.g ? AppBarChild(title: AppTranslationConstants.businessDirectory.tr, color: Colors.transparent)
             : _.isAdminCenter ? AppBarChild(title: AppTranslationConstants.usersDirectory.tr, color: Colors.transparent) : null,
         backgroundColor: AppColor.main75,
-        body: Obx(()=>SafeArea(
+        body: Obx(()=> SafeArea(
           child: _.isLoading.value ? AppCircularProgressIndicator(subtitle: _.isAdminCenter ? AppTranslationConstants.usersDirectory : AppTranslationConstants.businessDirectory.tr,)
-              : _.sortedProfileLocation.value.isNotEmpty ? ListView.separated(
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              separatorBuilder:  (context, index) => const Divider(),
-              itemCount: _.sortedProfileLocation.value.length,
-              itemBuilder: (context, index) {
-                return DirectoryFacility(_.sortedProfileLocation.value.values.elementAt(index),
-                  distanceBetween: _.sortedProfileLocation.value.keys.elementAt(index).round().toString(),);
-              }) : Center(
-                  child:SizedBox(
+              : Stack(
+              children: [
+                _.profilesToShow.value.isNotEmpty ? ListView.separated(
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  separatorBuilder:  (context, index) => const Divider(),
+                  itemCount: _.profilesToShow.value.length,
+                  controller: _.directoryScrollController,
+                  itemBuilder: (context, index) {
+                    return DirectoryFacility(_.profilesToShow.value.values.elementAt(index),
+                      distanceBetween: _.profilesToShow.value.keys.elementAt(index).round().toString(),);
+                  }) :
+                Center(
+                  child: SizedBox(
                     width: AppTheme.fullWidth(context)*0.75,
                     child:  Text(AppTranslationConstants.noNearResultsWereFound.tr,
-                    style: AppTheme.primaryTitleText,
-                    textAlign: TextAlign.center,
+                      style: AppTheme.primaryTitleText,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-          ),
+                if(_.isLoadingNextDirectory)
+                  const Center(child: CircularProgressIndicator())
+              ]
+          )
         )
         )
       )

@@ -1,6 +1,5 @@
 
-abstract class DirectoryService {
 
-  void sortByLocation();
+abstract class DirectoryService {
 
 }
