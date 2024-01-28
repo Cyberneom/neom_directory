@@ -26,7 +26,7 @@
         <entry key="archive">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.4.9/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.4.10/lib" />
             </list>
           </value>
         </entry>
@@ -68,7 +68,7 @@
         <entry key="audio_session">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/audio_session-0.1.17/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/audio_session-0.1.18/lib" />
             </list>
           </value>
         </entry>
@@ -159,56 +159,56 @@
         <entry key="cached_network_image">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image-3.3.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image-3.3.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="cached_network_image_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_platform_interface-3.0.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_platform_interface-4.0.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="cached_network_image_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_web-1.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_web-1.1.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="camera">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera-0.10.5+5/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera-0.10.5+8/lib" />
             </list>
           </value>
         </entry>
         <entry key="camera_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_android-0.10.8+13/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_android-0.10.8+16/lib" />
             </list>
           </value>
         </entry>
         <entry key="camera_avfoundation">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+7/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+9/lib" />
             </list>
           </value>
         </entry>
         <entry key="camera_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_platform_interface-2.6.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_platform_interface-2.7.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="camera_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_web-0.3.2+3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/camera_web-0.3.2+4/lib" />
             </list>
           </value>
         </entry>
@@ -271,7 +271,7 @@
         <entry key="cross_file">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cross_file-0.3.3+6/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/cross_file-0.3.3+8/lib" />
             </list>
           </value>
         </entry>
@@ -299,7 +299,7 @@
         <entry key="device_info_plus">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -628,7 +628,7 @@
         <entry key="flutter_rust_bridge">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rust_bridge-1.82.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rust_bridge-1.82.6/lib" />
             </list>
           </value>
         </entry>
@@ -642,7 +642,7 @@
         <entry key="flutter_stripe">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-9.5.0+1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-9.6.0/lib" />
             </list>
           </value>
         </entry>
@@ -726,7 +726,7 @@
         <entry key="geolocator_apple">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.3/lib" />
             </list>
           </value>
         </entry>
@@ -761,7 +761,7 @@
         <entry key="get_it">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.6.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.6.6/lib" />
             </list>
           </value>
         </entry>
@@ -782,7 +782,7 @@
         <entry key="google_identity_services_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_identity_services_web-0.2.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_identity_services_web-0.3.0+2/lib" />
             </list>
           </value>
         </entry>
@@ -796,35 +796,35 @@
         <entry key="google_maps_flutter">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter-2.5.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter-2.5.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="google_maps_flutter_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.5.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.6.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="google_maps_flutter_ios">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.3.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.3.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="google_maps_flutter_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="google_maps_flutter_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.4+2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.4+3/lib" />
             </list>
           </value>
         </entry>
@@ -838,7 +838,7 @@
         <entry key="google_sign_in_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.20/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/lib" />
             </list>
           </value>
         </entry>
@@ -852,14 +852,14 @@
         <entry key="google_sign_in_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="google_sign_in_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.3+2/lib" />
             </list>
           </value>
         </entry>
@@ -915,7 +915,7 @@
         <entry key="image_cropper">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper-5.0.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper-5.0.1/lib" />
             </list>
           </value>
         </entry>
@@ -943,7 +943,7 @@
         <entry key="image_picker_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.8+2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.9+2/lib" />
             </list>
           </value>
         </entry>
@@ -957,7 +957,7 @@
         <entry key="image_picker_ios">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.8+4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.9/lib" />
             </list>
           </value>
         </entry>
@@ -978,7 +978,7 @@
         <entry key="image_picker_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.9.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.9.2/lib" />
             </list>
           </value>
         </entry>
@@ -992,14 +992,14 @@
         <entry key="in_app_purchase">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase-3.1.11/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase-3.1.12/lib" />
             </list>
           </value>
         </entry>
         <entry key="in_app_purchase_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.0+15/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.0+16/lib" />
             </list>
           </value>
         </entry>
@@ -1013,7 +1013,7 @@
         <entry key="in_app_purchase_storekit">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.6+7/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.8/lib" />
             </list>
           </value>
         </entry>
@@ -1160,21 +1160,21 @@
         <entry key="neom_admin">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_admin-4c3ad994aaac3d717b8c5e50f459983e04204d45//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_admin-a3d5be12f8d0d5c1f23690a0f6a471343b0f6f98//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_bands">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_bands-7ff8619b27f132bc003ff67ccf65af83f389d209//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_bands-d713529171954386d8a8c253cf2503fab5ec4842//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_commerce">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_commerce-f63ce7311b077b1f61377e324057eb450a684634//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_commerce-c22e081ee60f9215a705cd8bf68848e0380ddc69//lib" />
             </list>
           </value>
         </entry>
@@ -1188,21 +1188,21 @@
         <entry key="neom_events">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_events-3afa47e401270f225a6d702b8ef11e484aaf8606//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_events-e89c8838b87cba1a277f8aa53b42cf7e190a9f91//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_frequencies">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_frequencies-7a523fc885c4971489bf2b9cbb8b85e72a98d048//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_frequencies-05a5bc9686a634ee118d50695286411ad61575d3//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_generator">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_generator-aeafa0316778e79a3edd75ce4fca74f428cff839//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_generator-106564dbd7a3e0c5cb248fb9ec1ef3bd34b716e8//lib" />
             </list>
           </value>
         </entry>
@@ -1216,35 +1216,35 @@
         <entry key="neom_home">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_home-f97af57d9756582e1dc2bff18e89976931a6e0ed//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_home-9f7011f4e41da19282acbc99f074be2ecdc0e8af//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_inbox">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_inbox-55f458654ec046df60d1c350341d6dbd024994fc//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_inbox-dad9a8d8221b95bacb633b70e48a6c78bc398483//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_instruments">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_instruments-bdb9bee6c457f549507d4f788775302dad44766a//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_instruments-0b76e20ba5fe158837a5b641b9ce2fac17916462//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_itemlists">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_itemlists-8e2d8ee350ddb48e333ab45a8f2c854df7c5b902//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_itemlists-163cc3d84317fdcb3208c1214653c0dc02421609//lib" />
             </list>
           </value>
         </entry>
         <entry key="neom_jobs">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_jobs-7285a6765b805be3582961557e2b1acff90ac8de//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_jobs-b58e3ee24809d82e6f64571f95ab7dbf42b62a95//lib" />
             </list>
           </value>
         </entry>
@@ -1258,7 +1258,7 @@
         <entry key="neom_music_player">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_music_player-a1f02f9a2923f4cb64c75ad49f4872c89b1db77e//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_music_player-da87f51ae40ed2d87b55d30965423c388059984c//lib" />
             </list>
           </value>
         </entry>
@@ -1279,7 +1279,7 @@
         <entry key="neom_timeline">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/git/neom_timeline-466fd6ce897908727d027798c88029eb504a7d5f//lib" />
+              <option value="$USER_HOME$/.pub-cache/git/neom_timeline-6a16aa6a54e129f341a6c7d4efb9dd6f7fc71f60//lib" />
             </list>
           </value>
         </entry>
@@ -1370,7 +1370,7 @@
         <entry key="path_provider_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/lib" />
             </list>
           </value>
         </entry>
@@ -1412,56 +1412,63 @@
         <entry key="permission_handler">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler-11.0.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler-11.1.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="permission_handler_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_android-11.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_android-12.0.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="permission_handler_apple">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_apple-9.1.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_apple-9.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="permission_handler_html">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.0+2/lib" />
             </list>
           </value>
         </entry>
         <entry key="permission_handler_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.12.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-4.0.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="permission_handler_windows">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="petitparser">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-5.4.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-6.0.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="platform">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="plugin_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.6/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
             </list>
           </value>
         </entry>
@@ -1482,7 +1489,7 @@
         <entry key="puppeteer">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/puppeteer-3.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/puppeteer-3.6.0/lib" />
             </list>
           </value>
         </entry>
@@ -1497,13 +1504,6 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/qr_flutter-4.1.0/lib" />
-            </list>
-          </value>
-        </entry>
-        <entry key="quiver">
-          <value>
-            <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/quiver-3.2.1/lib" />
             </list>
           </value>
         </entry>
@@ -1594,7 +1594,7 @@
         <entry key="shared_preferences_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.2/lib" />
             </list>
           </value>
         </entry>
@@ -1706,7 +1706,7 @@
         <entry key="sqflite_common">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+2/lib" />
             </list>
           </value>
         </entry>
@@ -1741,21 +1741,21 @@
         <entry key="stripe_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-9.5.0+1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-9.6.0+2/lib" />
             </list>
           </value>
         </entry>
         <entry key="stripe_ios">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-9.5.0+1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-9.6.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="stripe_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.5.0+1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.6.0/lib" />
             </list>
           </value>
         </entry>
@@ -1769,7 +1769,7 @@
         <entry key="synchronized">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/synchronized-3.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/synchronized-3.1.0+1/lib" />
             </list>
           </value>
         </entry>
@@ -1832,21 +1832,21 @@
         <entry key="url_launcher_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_android-6.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_android-6.2.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="url_launcher_ios">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="url_launcher_linux">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_linux-3.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_linux-3.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -1860,21 +1860,21 @@
         <entry key="url_launcher_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="url_launcher_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_web-2.2.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_web-2.2.3/lib" />
             </list>
           </value>
         </entry>
         <entry key="url_launcher_windows">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -1916,21 +1916,21 @@
         <entry key="video_player">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player-2.8.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player-2.8.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="video_player_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_android-2.4.10/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_android-2.4.11/lib" />
             </list>
           </value>
         </entry>
         <entry key="video_player_avfoundation">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.5/lib" />
             </list>
           </value>
         </entry>
@@ -1944,7 +1944,7 @@
         <entry key="video_player_web">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_web-2.1.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_web-2.1.3/lib" />
             </list>
           </value>
         </entry>
@@ -1972,35 +1972,35 @@
         <entry key="webview_flutter">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.4.2/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.4.3/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_android">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.12.1/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.13.2/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_platform_interface">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.9.0/lib" />
             </list>
           </value>
         </entry>
         <entry key="webview_flutter_wkwebview">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.9.4/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.10.1/lib" />
             </list>
           </value>
         </entry>
         <entry key="win32">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.0.9/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.2.0/lib" />
             </list>
           </value>
         </entry>
@@ -2014,14 +2014,14 @@
         <entry key="xdg_directories">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.3/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.4/lib" />
             </list>
           </value>
         </entry>
         <entry key="xml">
           <value>
             <list>
-              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.3.0/lib" />
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
             </list>
           </value>
         </entry>
@@ -2042,29 +2042,29 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_admin-4c3ad994aaac3d717b8c5e50f459983e04204d45//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_bands-7ff8619b27f132bc003ff67ccf65af83f389d209//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_commerce-f63ce7311b077b1f61377e324057eb450a684634//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_events-3afa47e401270f225a6d702b8ef11e484aaf8606//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_frequencies-7a523fc885c4971489bf2b9cbb8b85e72a98d048//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_generator-aeafa0316778e79a3edd75ce4fca74f428cff839//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_home-f97af57d9756582e1dc2bff18e89976931a6e0ed//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_inbox-55f458654ec046df60d1c350341d6dbd024994fc//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_instruments-bdb9bee6c457f549507d4f788775302dad44766a//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_itemlists-8e2d8ee350ddb48e333ab45a8f2c854df7c5b902//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_jobs-7285a6765b805be3582961557e2b1acff90ac8de//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_music_player-a1f02f9a2923f4cb64c75ad49f4872c89b1db77e//lib" />
-      <root url="file://$USER_HOME$/.pub-cache/git/neom_timeline-466fd6ce897908727d027798c88029eb504a7d5f//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_admin-a3d5be12f8d0d5c1f23690a0f6a471343b0f6f98//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_bands-d713529171954386d8a8c253cf2503fab5ec4842//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_commerce-c22e081ee60f9215a705cd8bf68848e0380ddc69//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_events-e89c8838b87cba1a277f8aa53b42cf7e190a9f91//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_frequencies-05a5bc9686a634ee118d50695286411ad61575d3//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_generator-106564dbd7a3e0c5cb248fb9ec1ef3bd34b716e8//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_home-9f7011f4e41da19282acbc99f074be2ecdc0e8af//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_inbox-dad9a8d8221b95bacb633b70e48a6c78bc398483//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_instruments-0b76e20ba5fe158837a5b641b9ce2fac17916462//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_itemlists-163cc3d84317fdcb3208c1214653c0dc02421609//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_jobs-b58e3ee24809d82e6f64571f95ab7dbf42b62a95//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_music_player-da87f51ae40ed2d87b55d30965423c388059984c//lib" />
+      <root url="file://$USER_HOME$/.pub-cache/git/neom_timeline-6a16aa6a54e129f341a6c7d4efb9dd6f7fc71f60//lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.16/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/after_layout-1.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/animated_text_kit-4.2.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.4.9/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/archive-3.4.10/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.4.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.11.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audio_service-0.18.12/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audio_service_platform_interface-0.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audio_service_web-0.1.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audio_session-0.1.17/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audio_session-0.1.18/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audioplayers-5.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audioplayers_android-4.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/audioplayers_darwin-5.0.2/lib" />
@@ -2077,14 +2077,14 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/awesome_notifications-0.8.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_cli_annotations-2.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image-3.3.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_platform_interface-3.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_web-1.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera-0.10.5+5/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_android-0.10.8+13/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+7/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_platform_interface-2.6.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_web-0.3.2+3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image-3.3.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_platform_interface-4.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cached_network_image_web-1.1.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera-0.10.5+8/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_android-0.10.8+16/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_avfoundation-0.9.13+9/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_platform_interface-2.7.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/camera_web-0.3.2+4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/carousel_slider-4.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/characters-1.3.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/clock-1.1.1/lib" />
@@ -2093,11 +2093,11 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cloud_firestore_web-3.9.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/collection-1.18.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/convert-3.1.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cross_file-0.3.3+6/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cross_file-0.3.3+8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/crypto-3.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/csslib-1.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus-9.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/dio-4.0.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/enum_to_string-2.0.1/lib" />
@@ -2142,9 +2142,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_lyric-2.0.4+6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rating_bar-4.0.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rust_bridge-1.82.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_rust_bridge-1.82.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_slider_indicator-1.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-9.5.0+1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/flutter_stripe-9.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/fraction-5.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/freezed_annotation-2.4.1/lib" />
@@ -2154,26 +2154,26 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geocoding_platform_interface-2.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator-10.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_android-4.4.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_apple-2.3.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_platform_interface-4.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_web-2.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/geolocator_windows-0.2.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/get-5.0.0-release-candidate-5/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.6.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/get_it-7.6.6/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_api_headers-3.7.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_fonts-6.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_identity_services_web-0.2.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_identity_services_web-0.3.0+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps-6.3.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter-2.5.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.5.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.3.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.4+2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter-2.5.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_android-2.6.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_ios-2.3.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_platform_interface-2.4.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_maps_flutter_web-0.5.4+3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in-6.2.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.20/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.21/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.7.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.3+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hashtagable_v3-3.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive-2.2.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0/lib" />
@@ -2181,21 +2181,21 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/http-1.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/http_parser-4.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/id3-1.0.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper-5.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper-5.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper_for_web-3.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_cropper_platform_interface-5.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker-0.8.9/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.8+2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_android-0.8.9+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_for_web-2.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.8+4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.9/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.9.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_platform_interface-2.9.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase-3.1.11/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.0+15/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase-3.1.12/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_android-0.3.0+16/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_platform_interface-1.3.6/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.6+7/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_purchase_storekit-0.3.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_review-2.0.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/in_app_review_platform_interface-2.0.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/intl-0.18.1/lib" />
@@ -2230,26 +2230,26 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/package_info_plus_platform_interface-2.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.8.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider-2.1.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_platform_interface-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/percent_indicator-4.2.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler-11.0.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_android-11.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_apple-9.1.4/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-3.12.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_windows-0.1.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-5.4.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.6/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler-11.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_android-12.0.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_apple-9.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.0+2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_platform_interface-4.0.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/petitparser-6.0.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/platform-3.1.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pointycastle-3.7.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/puppeteer-3.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/puppeteer-3.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/qr-3.0.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/qr_flutter-4.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/quiver-3.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/readmore-2.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/rflutter_alert-2.0.7/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/rubber-1.1.0/lib" />
@@ -2262,7 +2262,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf-1.4.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shelf_static-1.1.2/lib" />
@@ -2277,16 +2277,16 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/spotify_sdk-2.3.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sprintf-7.0.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite-2.3.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.11.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_transform-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/string_scanner-1.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-9.5.0+1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-9.5.0+1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.5.0+1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_android-9.6.0+2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_ios-9.6.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stripe_platform_interface-9.6.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/surround_frequency_generator-1.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/synchronized-3.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/synchronized-3.1.0+1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/term_glyph-1.2.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.6.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/timeago-3.6.0/lib" />
@@ -2295,34 +2295,34 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/typed_data-1.3.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/upgrader-8.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher-6.2.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_android-6.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_linux-3.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_android-6.2.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_ios-6.2.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_linux-3.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_macos-3.1.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_web-2.2.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_web-2.2.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/uuid-4.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/version-3.0.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_compress-3.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_editor-3.0.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player-2.8.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_android-2.4.10/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player-2.8.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_android-2.4.11/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.5/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_platform_interface-6.2.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_web-2.1.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_player_web-2.1.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/video_thumbnail-0.5.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web-0.3.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket_channel-2.4.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.4.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.12.1/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.6.0/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.9.4/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.0.9/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.4.3/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.13.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.9.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.10.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32_registry-1.1.2/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.3/lib" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.3.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xml-6.5.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/youtube_player_flutter-8.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../neom_commons/lib" />
