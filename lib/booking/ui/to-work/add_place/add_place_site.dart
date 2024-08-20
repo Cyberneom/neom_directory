@@ -8,7 +8,7 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import 'add_place_commodities.dart';
 
 class AddPlaceSite extends StatefulWidget {
-  const AddPlaceSite({Key? key}) : super(key: key);
+  const AddPlaceSite({super.key});
 
   @override
   AddPlaceSiteState createState() => AddPlaceSiteState();

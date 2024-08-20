@@ -14,7 +14,7 @@ class PlaceImageView extends StatefulWidget {
   int _currentIndex=0;
 
 
-  PlaceImageView(this._liked, this.place, {Key? key}) : super(key: key);
+  PlaceImageView(this._liked, this.place, {super.key});
 
   @override
   PlaceImageViewState createState() => PlaceImageViewState();

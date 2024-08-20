@@ -13,7 +13,7 @@ import 'directory_controller.dart';
 import 'directory_facility.dart';
 
 class DirectoryPage extends StatelessWidget {
-  const DirectoryPage({Key? key}) : super(key: key);
+  const DirectoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:neom_commons/core/utils/app_utilities.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
 class BookingPaymentPage extends StatefulWidget {
-  const BookingPaymentPage({Key? key}) : super(key: key);
+  const BookingPaymentPage({super.key});
 
   @override
   BookingPaymentPageState createState() => BookingPaymentPageState();

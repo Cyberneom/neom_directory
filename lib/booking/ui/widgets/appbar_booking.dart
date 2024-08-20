@@ -10,7 +10,7 @@ class AppBarBooking extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   Color? color;
 
-  AppBarBooking({this.title = "", this.color, Key? key}) : super(key: key);
+  AppBarBooking({this.title = "", this.color, super.key});
 
   @override
   Size get preferredSize => AppTheme.appBarHeight;

@@ -7,7 +7,7 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import 'add_place.dart';
 
 class AddPlaceName extends StatefulWidget {
-  const AddPlaceName({Key? key}) : super(key: key);
+  const AddPlaceName({super.key});
 
   @override
   AddPlaceNameState createState() => AddPlaceNameState();

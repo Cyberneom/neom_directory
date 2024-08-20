@@ -7,7 +7,7 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import 'add_place_photos.dart';
 
 class AddPlaceCommodities extends StatefulWidget {
-  const AddPlaceCommodities({Key? key}) : super(key: key);
+  const AddPlaceCommodities({super.key});
 
   @override
   AddPlaceCommoditiesState createState() => AddPlaceCommoditiesState();

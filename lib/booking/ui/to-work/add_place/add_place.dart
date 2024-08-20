@@ -6,7 +6,7 @@ import '../../booking_home_page.dart';
 import 'add_place_category.dart';
 
 class AddPlace extends StatefulWidget {
-  const AddPlace({Key? key}) : super(key: key);
+  const AddPlace({super.key});
 
   @override
   AddPlaceState createState() => AddPlaceState();

@@ -18,7 +18,7 @@ class BookingPlace extends StatefulWidget {
   final Place place;
   int _currentIndex=0;
 
-  BookingPlace(this._liked, this.place, {Key? key}) : super(key: key);
+  BookingPlace(this._liked, this.place, {super.key});
 
   @override
   BookingPlaceState createState() => BookingPlaceState();

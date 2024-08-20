@@ -18,7 +18,7 @@ class DirectoryFacility extends StatefulWidget {
   int _currentIndex = 0;
   String distanceBetween;
 
-  DirectoryFacility(this.facilityProfile, {this.liked = false, this.distanceBetween = "", Key? key}) : super(key: key);
+  DirectoryFacility(this.facilityProfile, {this.liked = false, this.distanceBetween = "", super.key});
 
   @override
   DirectoryFacilityState createState() => DirectoryFacilityState();
@@ -195,7 +195,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   onTap: () {
                     String message = '';
                     if(isAdminCenter) {
-                      if(facilityProfile.type != ProfileType.fan) {
+                      if(facilityProfile.type != ProfileType.casual) {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgC.tr}';
                       } else {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgCFan.tr}';

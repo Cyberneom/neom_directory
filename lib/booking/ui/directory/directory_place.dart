@@ -13,7 +13,7 @@ class DirectoryPlace extends StatefulWidget {
   final AppProfile facilityProfile;
   int _currentIndex = 0;
 
-  DirectoryPlace(this.facilityProfile, {this.liked = false, Key? key}) : super(key: key);
+  DirectoryPlace(this.facilityProfile, {this.liked = false, super.key});
 
   @override
   BookingPlaceState createState() => BookingPlaceState();

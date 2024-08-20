@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../widgets/customer_slider_widget.dart';
 
 class ReservationPage extends StatefulWidget {
-  const ReservationPage({Key? key}) : super(key: key);
+  const ReservationPage({super.key});
 
 
   @override

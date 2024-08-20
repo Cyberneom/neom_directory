@@ -6,7 +6,7 @@ class EventCounter extends StatelessWidget {
 
   final CounterChangeCallback onChanged;
   const EventCounter({
-    Key? key,
+    super.key,
     required num initialValue,
     required this.minValue,
     required this.maxValue,
@@ -19,8 +19,7 @@ class EventCounter extends StatelessWidget {
   })  : assert(maxValue > minValue),
         assert(initialValue >= minValue && initialValue <= maxValue),
         assert(step > 0),
-        selectedValue = initialValue,
-        super(key: key);
+        selectedValue = initialValue;
   ///min value user can pick
   final num minValue;
   ///max value user can pick

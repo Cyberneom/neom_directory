@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class BookingComments extends StatefulWidget {
-  const BookingComments({Key? key}) : super(key: key);
+  const BookingComments({super.key});
 
   @override
   BookingCommentsState createState() => BookingCommentsState();

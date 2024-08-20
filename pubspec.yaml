@@ -1,6 +1,6 @@
 name: neom_booking
 description: Booking and Directory for Cyberneom.
-version: 1.1.2
+version: 1.2.0
 homepage: https://github.com/emmanuel-montoya/neom_booking
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -25,16 +25,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-
-dependency_overrides:
-#  neom_commons:
-#    path: ../neom_commons
-#  neom_posts:
-#    path: ../neom_posts
-#  neom_profile:
-#    path: ../neom_profile
-  uuid: 4.1.0
-  logger: 2.0.2+1
+  flutter_lints: ^4.0.0
 
 flutter:

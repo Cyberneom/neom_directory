@@ -14,7 +14,7 @@ import 'booking_payment_page.dart';
 class BookingPlaceDetails extends StatefulWidget {
   final Place place;
 
-  const BookingPlaceDetails(this.place, {Key? key}) : super(key: key);
+  const BookingPlaceDetails(this.place, {super.key});
 
   @override
   BookingPlaceDetailsState createState() => BookingPlaceDetailsState();

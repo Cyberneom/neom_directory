@@ -7,7 +7,7 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import 'add_place_site.dart';
 
 class AddPlaceCategory extends StatefulWidget {
-  const AddPlaceCategory({Key? key}) : super(key: key);
+  const AddPlaceCategory({super.key});
 
   @override
   AddPlaceCategoryState createState() => AddPlaceCategoryState();

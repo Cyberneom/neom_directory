@@ -67,9 +67,9 @@ class DirectoryController extends GetxController implements DirectoryService{
       if(!isAdminCenter) {
         profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
             needsPhone: true, needsPosts: needsPosts,
-            usageReasons: [UsageReason.professional, UsageReason.job],
+            usageReasons: [UsageReason.professional],
             profileTypes: AppFlavour.appInUse == AppInUse.g
-                ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
+                ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist]
                 : [ProfileType.facilitator, ProfileType.host],
             currentPosition: position,
             maxDistance: 2000, limit: 10
@@ -110,8 +110,8 @@ class DirectoryController extends GetxController implements DirectoryService{
         if(!isAdminCenter) {
           nextProfiles = await profileFirestore.getWithParameters(
               needsPhone: true, needsPosts: needsPosts,
-              usageReasons: [UsageReason.professional, UsageReason.job],
-              profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.instrumentist]
+              usageReasons: [UsageReason.professional],
+              profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist]
                   : [ProfileType.facilitator, ProfileType.host], currentPosition: position, maxDistance: 2000, limit: 10, isFirstCall: false,
           );
         } else {
