@@ -16,7 +16,7 @@ class BookingRoutes {
     GetPage(
       name: AppRouteConstants.directory,
       page: () => const DirectoryPage(),
-      transition: Transition.zoom,
+      transition: Transition.leftToRight,
     ),
     GetPage(
       name: AppRouteConstants.bookingSearch,

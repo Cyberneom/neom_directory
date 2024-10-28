@@ -45,7 +45,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                if(_.needsPosts) Container(
+                if(_.needsPosts && facilityProfile.facilities!.values.first.galleryImgUrls.isNotEmpty) Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -58,7 +58,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                     ],
                   ),
                 ),
-                if(_.needsPosts) const Divider(thickness: 1),
+                if(_.needsPosts && facilityProfile.facilities!.values.first.galleryImgUrls.isNotEmpty)  const Divider(thickness: 1),
                 facilityAvatarSection(context, _.userController.profile, facilityProfile,
                     isAdminCenter: _.isAdminCenter),
                 AppTheme.heightSpace10,
@@ -195,7 +195,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   onTap: () {
                     String message = '';
                     if(isAdminCenter) {
-                      if(facilityProfile.type != ProfileType.casual) {
+                      if(facilityProfile.type != ProfileType.commonTarget) {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgC.tr}';
                       } else {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgCFan.tr}';

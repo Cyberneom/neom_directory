@@ -3,6 +3,7 @@ import 'package:neom_commons/core/utils/constants/app_assets.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
 class SliderModel{
+
   String imagePath;
   String title;
   String msg1;
@@ -10,7 +11,7 @@ class SliderModel{
 
   SliderModel(this.imagePath, this.title, this.msg1, {this.msg2 = ""});
 
-  static List<SliderModel> getOnboardingSlides(){
+  static List<SliderModel> getOnboardingSlides() {
     List<SliderModel> slides = [];
     SliderModel s1 = SliderModel(AppAssets.musicians,
         AppTranslationConstants.welcomeToApp.tr, AppTranslationConstants.welcomeToAppMsg.tr);
