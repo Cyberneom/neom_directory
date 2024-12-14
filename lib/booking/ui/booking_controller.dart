@@ -31,7 +31,7 @@ class BookingController extends GetxController with GetTickerProviderStateMixin 
   AppProfile profile = AppProfile();
   Address address = Address();
 
-  late Position _position;
+  Position? _position;
 
   PageController pageController = PageController(
     initialPage: 0,
@@ -80,7 +80,9 @@ class BookingController extends GetxController with GetTickerProviderStateMixin 
   }
 
   void getAddressFromLocation() async {
-    address = await Address.getAddressFromPosition(_position);
+    if(_position != null) {
+      address = await Address.getAddressFromPosition(_position!);
+    }
     update([AppPageIdConstants.booking]);
   }
 
