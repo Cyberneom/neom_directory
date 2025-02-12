@@ -3,14 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:neom_commons/core/data/implementations/app_hive_controller.dart';
+import 'package:neom_commons/core/utils/constants/app_hive_constants.dart';
+import 'package:neom_commons/core/utils/enums/app_hive_box.dart';
 import 'package:neom_commons/neom_commons.dart';
-
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../domain/use_cases/directory_service.dart';
 
 
 class DirectoryController extends GetxController implements DirectoryService{
 
   final userController = Get.find<UserController>();
+  final appHiveController = Get.find<AppHiveController>();
 
   ProfileFirestore profileFirestore = ProfileFirestore();
   final ScrollController directoryScrollController = ScrollController();
@@ -29,6 +33,7 @@ class DirectoryController extends GetxController implements DirectoryService{
   final RxBool isUploading = false.obs;
   final RxMap<double, AppProfile> profilesToShow = <double, AppProfile>{}.obs;
 
+  String today = '';
   //TODO TO USE WHEN FILTERING
   // final RxMap<String, AppProfile> facilityProfiles = <String, AppProfile>{}.obs;
   // final RxMap<String, AppProfile> placeProfiles = <String, AppProfile>{}.obs;
@@ -61,36 +66,50 @@ class DirectoryController extends GetxController implements DirectoryService{
     try {
       position = profile.position ?? await GeoLocatorController().getCurrentPosition();
 
-      DateTime startTime = DateTime.now();
       List<AppProfile> profilesWithPhoneAndFacility = [];
 
-      if(!isAdminCenter) {
-        profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-            needsPhone: true, needsPosts: needsPosts,
-            usageReasons: [UsageReason.professional],
-            profileTypes: AppFlavour.appInUse == AppInUse.g
-                ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist]
-                : [ProfileType.facilitator, ProfileType.host],
-            currentPosition: position,
-            maxDistance: 2000, limit: 10
-        );
+      if (appHiveController.directoryLastUpdate != today) {
+        AppUtilities.logger.i("Los datos en caché son antiguos. Cargando nuevos datos...");
+        await appHiveController.getBox(AppHiveBox.directory.name)?.clear();
       } else {
-        profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-          needsPhone: true, currentPosition: position
-        );
+        AppUtilities.logger.i("Cargando directoryProfiles desde caché...");
+        var cachedProfiles = Hive.box(AppHiveBox.directory.name).get(AppHiveConstants.directoryProfiles);
+        if (cachedProfiles != null && cachedProfiles is Map) {
+          profilesToShow.value = cachedProfiles.map((key, value) => MapEntry(key, AppProfile.fromJSON(value)));
+        } else {
+          profilesToShow.value = {};
+        }
       }
 
-      DateTime endTime = DateTime.now();
-      Duration duration = endTime.difference(startTime);
-      AppUtilities.logger.i('Query took ${duration.inSeconds} seconds');
-
-      profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
+      if(profilesToShow.isEmpty) await getProfilesToShow(profilesWithPhoneAndFacility);
+      
     } catch (e) {
       AppUtilities.logger.e(e.toString());
     }
 
     isLoading.value = false;
     update();
+  }
+
+  Future<void> getProfilesToShow(List<AppProfile> profilesWithPhoneAndFacility) async {
+    if(!isAdminCenter) {
+      profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
+          needsPhone: true, needsPosts: needsPosts,
+          // usageReasons: [UsageReason.professional, UsageReason.any],
+          ///DEPRECATED profileTypes: [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist],
+          currentPosition: position,
+          maxDistance: 2000, limit: 100
+      );
+    } else {
+      profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
+        needsPhone: true, currentPosition: position
+      );
+    }
+    
+    profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
+    Hive.box(AppHiveBox.directory.name).put(AppHiveConstants.directoryProfiles,
+        profilesToShow.map((key, value) => MapEntry(key, value.toJSONWithFacilities())));
+    Hive.box(AppHiveBox.directory.name).put(AppHiveConstants.lastUpdate, today);
   }
 
   void _directoryScrollListener() async {
@@ -111,7 +130,7 @@ class DirectoryController extends GetxController implements DirectoryService{
           nextProfiles = await profileFirestore.getWithParameters(
               needsPhone: true, needsPosts: needsPosts,
               usageReasons: [UsageReason.professional],
-              profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist]
+              profileTypes: AppFlavour.appInUse == AppInUse.g ? [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.appArtist]
                   : [ProfileType.facilitator, ProfileType.host], currentPosition: position, maxDistance: 2000, limit: 10, isFirstCall: false,
           );
         } else {

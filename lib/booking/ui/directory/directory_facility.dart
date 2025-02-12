@@ -30,6 +30,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
   @override
   Widget build(BuildContext context) {
     facilityProfile = widget.facilityProfile;
+    List<String> demoImgUrls = facilityProfile.facilities!.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
 
     return  GetBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
@@ -45,22 +46,22 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                if(_.needsPosts && facilityProfile.facilities!.values.first.galleryImgUrls.isNotEmpty) Container(
+                if(_.needsPosts && demoImgUrls.isNotEmpty) Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
                   height: AppTheme.fullHeight(context)/4,
                   child: Stack(
                     children: <Widget>[
-                      buildImageSlider(context, PageController(), widget._currentIndex, facilityProfile),
-                      buildWidgetImageIndicator(context,facilityProfile,widget._currentIndex),
+                      buildImageSlider(context, PageController(), widget._currentIndex, facilityProfile.id, demoImgUrls),
+                      buildWidgetImageIndicator(context, demoImgUrls, widget._currentIndex),
                       //TODO buildHeartWidget(context),
                     ],
                   ),
                 ),
-                if(_.needsPosts && facilityProfile.facilities!.values.first.galleryImgUrls.isNotEmpty)  const Divider(thickness: 1),
+                if(_.needsPosts && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
                 facilityAvatarSection(context, _.userController.profile, facilityProfile,
-                    isAdminCenter: _.isAdminCenter),
+                    isAdminCenter: _.isAdminCenter, showToContact: _.userController.userSubscription != null),
                 AppTheme.heightSpace10,
                 if(facilityProfile.aboutMe.isNotEmpty)
                   Align(
@@ -75,7 +76,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  PageView buildImageSlider(BuildContext context, PageController p, int index, AppProfile facility) {
+  PageView buildImageSlider(BuildContext context, PageController p, int index, String facilityId, List<String> demoImgUrls) {
     return PageView.builder(
         controller: p..addListener(() {
           setState(() {
@@ -83,12 +84,12 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             widget._currentIndex=p.page!.round  ();
           });
         }),
-        itemCount: facility.facilities!.values.first.galleryImgUrls.length,
+        itemCount: demoImgUrls.length,
         itemBuilder: (context,index) {
           return GestureDetector(
-            onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facility.id),
+            onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityId),
             child: ClipRRect(
-              child: HandledCachedNetworkImage(facility.facilities!.values.first.galleryImgUrls.elementAt(index),
+              child: HandledCachedNetworkImage(demoImgUrls.elementAt(index),
                 fit: BoxFit.fitWidth, enableFullScreen: false,
               )
           ),);
@@ -97,7 +98,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
   }
 
   Widget facilityAvatarSection(BuildContext context, AppProfile profile, AppProfile facilityProfile,
-      {bool showDots = true, bool isAdminCenter = false}) {
+      {bool showDots = true, bool isAdminCenter = false, bool showToContact = true}) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -183,6 +184,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   )
                 ],
               ),
+              if(showToContact)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 decoration: BoxDecoration(
@@ -195,7 +197,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   onTap: () {
                     String message = '';
                     if(isAdminCenter) {
-                      if(facilityProfile.type != ProfileType.commonTarget) {
+                      if(facilityProfile.type != ProfileType.general) {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgC.tr}';
                       } else {
                         message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgCFan.tr}';
@@ -216,13 +218,13 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  Align buildWidgetImageIndicator(BuildContext context, AppProfile appProfile, int currentindex) {
+  Align buildWidgetImageIndicator(BuildContext context, List<String> demoImgUrls, int currentindex) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SliderIndicator(
-            length: appProfile.facilities!.values.first.galleryImgUrls.length,
+            length: demoImgUrls.length,
             activeIndex: currentindex,
             indicator:const Padding( padding:EdgeInsets.all(3),child:Icon(Icons.fiber_manual_record,color: Colors.white70,size: 10,)),
             activeIndicator: const Padding(padding:EdgeInsets.all(3),child:Icon(Icons.fiber_manual_record,color: Colors.white,size: 14,),)
