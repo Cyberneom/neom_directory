@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:neom_commons/core/utils/app_color.dart';
 import 'package:neom_commons/core/utils/app_theme.dart';
 import 'package:neom_commons/core/utils/constants/app_assets.dart';
-import 'package:neom_commons/core/utils/constants/app_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_route_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_static_img_urls.dart';
@@ -36,7 +35,7 @@ class BookingHomePage extends StatelessWidget {
                             decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                               ),
-                             child: Image.asset(AppAssets.bookingLanding,
+                             child: Image.asset(AppAssets.directoryLanding,
                                  fit: BoxFit.fill,
                                colorBlendMode: BlendMode.colorBurn,
                                filterQuality: FilterQuality.high,
@@ -91,10 +90,10 @@ class BookingHomePage extends StatelessWidget {
                         children: <Widget>[
                           Container(
                             padding: const EdgeInsets.all(10),
-                            child: const Align(
+                            child: Align(
                                 alignment: Alignment.topLeft,
-                                child: Text(AppConstants.anthonyRojasCOO,
-                                  style: TextStyle(color:AppColor.ceriseRed,
+                                child: Text(AppTranslationConstants.slogan.tr,
+                                  style: const TextStyle(color:AppColor.ceriseRed,
                                       fontWeight: FontWeight.bold)
                                 )
                             ),
@@ -112,12 +111,12 @@ class BookingHomePage extends StatelessWidget {
                                 scrollDirection: Axis.horizontal,
                                 controller: _.pageController,
                                 children: <Widget>[
-                                  buildScrollActivities(AppTranslationConstants.rehearsalRoom.tr, AppStaticImageUrls.rehearsalRoom),
-                                  buildScrollActivities(AppTranslationConstants.liveSessions.tr, AppStaticImageUrls.liveSessions),
-                                  buildScrollActivities(AppTranslationConstants.homeStudio.tr, AppStaticImageUrls.homeStudio),
-                                  buildScrollActivities(AppTranslationConstants.production.tr, AppStaticImageUrls.production),
-                                  buildScrollActivities(AppTranslationConstants.forums.tr, AppStaticImageUrls.forums),
-                                  buildScrollActivities(AppTranslationConstants.recordStudio.tr, AppStaticImageUrls.recordStudio)
+                                  buildScrollActivities(AppAssets.directory01, isRemote: false),
+                                  buildScrollActivities(AppAssets.directory02, isRemote: false),
+                                  buildScrollActivities(AppAssets.directory03, isRemote: false),
+                                  buildScrollActivities(AppAssets.directory04, isRemote: false),
+                                  buildScrollActivities(AppAssets.directory05, isRemote: false),
+                                  buildScrollActivities(AppAssets.directory06, isRemote: false),
                                 ],);
                               },
                             ),

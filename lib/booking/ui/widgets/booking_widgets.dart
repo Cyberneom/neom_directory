@@ -13,7 +13,7 @@ import 'package:neom_commons/core/utils/constants/app_translation_constants.dart
 import '../directory/directory_controller.dart';
 import '../to-work/booking_description_details_page.dart';
 
-GestureDetector buildScrollActivities(String text,String imgUri) {
+GestureDetector buildScrollActivities(String imgUri, {String text = '', bool isRemote = true}) {
   return GestureDetector(
     onTap: () => Get.toNamed(AppRouteConstants.directory),
     child: Padding(
@@ -24,7 +24,8 @@ GestureDetector buildScrollActivities(String text,String imgUri) {
             color: Colors.white,
             height: 250,
             width: 350,
-            child: HandledCachedNetworkImage(imgUri, fit: BoxFit.fitHeight,),
+            child: isRemote ? HandledCachedNetworkImage(imgUri, fit: BoxFit.fitHeight,) :
+            Image.asset(imgUri, fit: BoxFit.fitWidth,),
         ),
         Container(
             width: double.infinity,

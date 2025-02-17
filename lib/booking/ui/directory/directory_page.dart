@@ -22,8 +22,7 @@ class DirectoryPage extends StatelessWidget {
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (_) => Scaffold(
-        appBar: AppFlavour.appInUse == AppInUse.g ? AppBarChild(title: AppTranslationConstants.businessDirectory.tr, color: Colors.transparent)
-            : _.isAdminCenter ? AppBarChild(title: AppTranslationConstants.usersDirectory.tr, color: Colors.transparent) : null,
+        appBar: _.isAdminCenter ? AppBarChild(title: AppTranslationConstants.usersDirectory.tr, color: Colors.transparent) : AppBarChild(title: AppTranslationConstants.businessDirectory.tr, color: Colors.transparent),
         backgroundColor: AppColor.main75,
         body: Obx(()=> SafeArea(
           child: _.isLoading.value ? AppCircularProgressIndicator(subtitle: _.isAdminCenter ? AppTranslationConstants.usersDirectory : AppTranslationConstants.businessDirectory.tr,)
