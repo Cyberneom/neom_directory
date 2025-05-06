@@ -1,4 +1,3 @@
-library counter;
 import 'package:flutter/material.dart';
 typedef CounterChangeCallback = void Function(num value);
 

@@ -5,7 +5,6 @@ import 'package:neom_commons/core/utils/app_theme.dart';
 import 'package:neom_commons/core/utils/constants/app_assets.dart';
 import 'package:neom_commons/core/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/core/utils/constants/app_route_constants.dart';
-import 'package:neom_commons/core/utils/constants/app_static_img_urls.dart';
 import 'package:neom_commons/core/utils/constants/app_translation_constants.dart';
 
 import 'Widgets/booking_widgets.dart';

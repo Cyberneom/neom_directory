@@ -3,18 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neom_commons/core/data/implementations/app_hive_controller.dart';
 import 'package:neom_commons/core/utils/constants/app_hive_constants.dart';
 import 'package:neom_commons/core/utils/enums/app_hive_box.dart';
 import 'package:neom_commons/neom_commons.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../domain/use_cases/directory_service.dart';
 
 
 class DirectoryController extends GetxController implements DirectoryService{
 
   final userController = Get.find<UserController>();
-  final appHiveController = Get.find<AppHiveController>();
+  final appHiveController = AppHiveController();
 
   ProfileFirestore profileFirestore = ProfileFirestore();
   final ScrollController directoryScrollController = ScrollController();
@@ -70,7 +71,7 @@ class DirectoryController extends GetxController implements DirectoryService{
 
       if (appHiveController.directoryLastUpdate != today) {
         AppUtilities.logger.i("Los datos en caché son antiguos. Cargando nuevos datos...");
-        await appHiveController.getBox(AppHiveBox.directory.name)?.clear();
+        await appHiveController.clearBox(AppHiveBox.directory.name);
       } else {
         AppUtilities.logger.i("Cargando directoryProfiles desde caché...");
         var cachedProfiles = Hive.box(AppHiveBox.directory.name).get(AppHiveConstants.directoryProfiles);
