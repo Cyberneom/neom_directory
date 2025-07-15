@@ -4,11 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:neom_commons/core/ui/widgets/handled_cached_network_image.dart';
-import 'package:neom_commons/core/ui/widgets/read_more_container.dart';
-import 'package:neom_commons/neom_commons.dart';
+import 'package:neom_commons/ui/theme/app_color.dart';
+import 'package:neom_commons/ui/theme/app_theme.dart';
+import 'package:neom_commons/ui/widgets/handled_cached_network_image.dart';
+import 'package:neom_commons/ui/widgets/read_more_container.dart';
+import 'package:neom_commons/utils/constants/app_constants.dart';
+import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
+import 'package:neom_commons/utils/constants/app_translation_constants.dart';
+import 'package:neom_commons/utils/external_utilities.dart';
+import 'package:neom_core/app_properties.dart';
+import 'package:neom_core/domain/model/app_profile.dart';
+import 'package:neom_core/utils/constants/app_route_constants.dart';
+import 'package:neom_core/utils/constants/core_constants.dart';
+import 'package:neom_core/utils/enums/profile_type.dart';
 
-import 'directory_controller.dart';
+import '../directory_controller.dart';
 
 // ignore: must_be_immutable
 class DirectoryFacility extends StatefulWidget {
@@ -116,7 +126,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                               backgroundColor: Colors.transparent,
                               backgroundImage: CachedNetworkImageProvider(
                                 facilityProfile.photoUrl.isNotEmpty ? facilityProfile.photoUrl
-                                    : AppFlavour.getNoImageUrl(),),
+                                    : AppProperties.getNoImageUrl(),),
                               radius: 20),
                         ),
                         AppTheme.widthSpace10,
@@ -150,8 +160,8 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                             children: [
                               const Icon(Icons.location_on, color: Colors.white, size: 12,),
                               AppTheme.widthSpace5,
-                              Text(facilityProfile.address.length <= AppConstants.maxLocationNameLength
-                                  ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0,AppConstants.maxLocationNameLength).capitalize}...",
+                              Text(facilityProfile.address.length <= CoreConstants.maxLocationNameLength
+                                  ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0, CoreConstants.maxLocationNameLength).capitalize}...",
                                   style: const TextStyle(fontSize: 12, color: Colors.white)
                               ),
                             ],
@@ -207,7 +217,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                       message = '${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${AppTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
                     }
 
-                    CoreUtilities.launchWhatsappURL(widget.facilityProfile.phoneNumber, message);
+                    ExternalUtilities.launchWhatsappURL(widget.facilityProfile.phoneNumber, message);
                   },
                 ),
               ),

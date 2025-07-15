@@ -1,2 +1,2 @@
-# neom_booking
-Booking and Directory for current social network apps.
+# neom_directory
+Directory for Open Neom.

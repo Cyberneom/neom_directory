@@ -1,8 +1,8 @@
-name: neom_booking
-description: Booking and Directory for Cyberneom.
-version: 1.2.0
-homepage: https://github.com/emmanuel-montoya/neom_booking
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+name: neom_directory
+description: Directory for Open Neom.
+version: 1.0.0
+homepage: https://github.com/Cyberneom/neom_directory
+publish_to: 'none'
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -12,15 +12,12 @@ dependencies:
   flutter:
     sdk: flutter
 
+  neom_core:
+    git:
+      url: git@github.com:Cyberneom/neom_core.git
   neom_commons:
     git:
       url: git@github.com:Cyberneom/neom_commons.git
-  neom_posts:
-    git:
-      url: git@github.com:Cyberneom/neom_posts.git
-  neom_profile:
-    git:
-      url: git@github.com:Cyberneom/neom_profile.git
 
 dev_dependencies:
   flutter_test:
