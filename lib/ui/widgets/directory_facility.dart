@@ -6,11 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
-import 'package:neom_commons/ui/widgets/handled_cached_network_image.dart';
+import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_commons/ui/widgets/read_more_container.dart';
 import 'package:neom_commons/utils/constants/app_constants.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
-import 'package:neom_commons/utils/constants/app_translation_constants.dart';
+import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
 import 'package:neom_commons/utils/external_utilities.dart';
 import 'package:neom_core/app_properties.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
@@ -18,6 +18,7 @@ import 'package:neom_core/utils/constants/app_route_constants.dart';
 import 'package:neom_core/utils/constants/core_constants.dart';
 import 'package:neom_core/utils/enums/profile_type.dart';
 
+import '../../utils/constants/directory_translation_constants.dart';
 import '../directory_controller.dart';
 
 // ignore: must_be_immutable
@@ -44,7 +45,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
 
     return  GetBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
-      builder: (_) => Container(
+      builder: (controller) => Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(style: BorderStyle.solid, color: Colors.grey, width: 0.5)
@@ -56,7 +57,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                if(_.needsPosts && demoImgUrls.isNotEmpty) Container(
+                if(controller.needsPosts && demoImgUrls.isNotEmpty) Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -69,9 +70,9 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                     ],
                   ),
                 ),
-                if(_.needsPosts && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
-                facilityAvatarSection(context, _.userController.profile, facilityProfile,
-                    isAdminCenter: _.isAdminCenter, showToContact: _.userController.userSubscription != null),
+                if(controller.needsPosts && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
+                facilityAvatarSection(context, controller.userController.profile, facilityProfile,
+                    isAdminCenter: controller.isAdminCenter, showToContact: controller.userController.userSubscription != null),
                 AppTheme.heightSpace10,
                 if(facilityProfile.aboutMe.isNotEmpty)
                   Align(
@@ -182,7 +183,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                           children: [
                             const Icon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
-                            Text(int.parse(widget.distanceBetween) <= 2 ? AppTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
+                            Text(int.parse(widget.distanceBetween) <= 2 ? CommonTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white
@@ -202,19 +203,19 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                     color: AppColor.bondiBlue
                 ),
                 child: InkWell(
-                  child: Text(AppTranslationConstants.toContact.tr,
+                  child: Text(DirectoryTranslationConstants.toContact.tr,
                     style: const TextStyle(color: Colors.white),),
                   onTap: () {
                     String message = '';
                     if(isAdminCenter) {
                       if(facilityProfile.type != ProfileType.general) {
-                        message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgC.tr}';
+                        message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgC.tr}';
                       } else {
-                        message = '${AppTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${AppTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${AppTranslationConstants.dirWhatsappAdminMsgCFan.tr}';
+                        message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgCFan.tr}';
                       }
 
                     } else {
-                      message = '${AppTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${AppTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
+                      message = '${DirectoryTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${DirectoryTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
                     }
 
                     ExternalUtilities.launchWhatsappURL(widget.facilityProfile.phoneNumber, message);

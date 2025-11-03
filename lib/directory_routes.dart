@@ -9,7 +9,7 @@ class DirectoryRoutes {
     GetPage(
       name: AppRouteConstants.directory,
       page: () => const DirectoryPage(),
-      transition: Transition.leftToRight,
+      transition: Transition.upToDown,
     ),
   ];
 
