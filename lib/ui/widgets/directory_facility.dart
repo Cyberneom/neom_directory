@@ -235,7 +235,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: SliderIndicator(
-            length: demoImgUrls.length,
+            length: demoImgUrls.length < 15 ? demoImgUrls.length : 15,
             activeIndex: currentindex,
             indicator:const Padding( padding:EdgeInsets.all(3),child:Icon(Icons.fiber_manual_record,color: Colors.white70,size: 10,)),
             activeIndicator: const Padding(padding:EdgeInsets.all(3),child:Icon(Icons.fiber_manual_record,color: Colors.white,size: 14,),)

@@ -15,6 +15,7 @@ import 'package:neom_core/domain/model/app_profile.dart';
 import 'package:neom_core/utils/constants/app_hive_constants.dart';
 import 'package:neom_core/utils/core_utilities.dart';
 import 'package:neom_core/utils/enums/app_hive_box.dart';
+import 'package:neom_core/utils/enums/profile_type.dart';
 import 'package:neom_core/utils/enums/usage_reason.dart';
 
 import '../../domain/use_cases/directory_service.dart';
@@ -32,19 +33,17 @@ class DirectoryController extends GetxController implements DirectoryService {
   AppProfile profile = AppProfile();
   Position? position;
 
-  bool needsPosts = false;
+  bool needsPosts = true;
   bool isAdminCenter = false;
 
   final RxBool isButtonDisabled = false.obs;
   final RxBool isLoading = true.obs;
   final RxBool isUploading = false.obs;
-  final RxMap<double, AppProfile> profilesToShow = <double, AppProfile>{}.obs;
+  final RxMap<double, AppProfile> directoryProfiles = <double, AppProfile>{}.obs;
+  final RxMap<double, AppProfile> filteredProfiles = <double, AppProfile>{}.obs;
+  final RxList<ProfileType> selectedProfileTypes = <ProfileType>[].obs;
 
   String today = '';
-
-  //TODO TO USE WHEN FILTERING
-  // final RxMap<String, AppProfile> facilityProfiles = <String, AppProfile>{}.obs;
-  // final RxMap<String, AppProfile> placeProfiles = <String, AppProfile>{}.obs;
 
   @override
   void onInit() async {
@@ -55,15 +54,11 @@ class DirectoryController extends GetxController implements DirectoryService {
 
     if(Get.arguments != null && Get.arguments.isNotEmpty) {
       isAdminCenter = Get.arguments[0] ?? false;
+      needsPosts = false;
+      AppConfig.logger.d("isAdminCenter: $isAdminCenter");
     }
 
     directoryScrollController.addListener(_directoryScrollListener);
-
-    try {
-      needsPosts = !isAdminCenter;
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
-    }
 
   }
 
@@ -74,22 +69,21 @@ class DirectoryController extends GetxController implements DirectoryService {
     try {
       position = profile.position ?? await GeoLocatorController().getCurrentPosition();
 
-      List<AppProfile> profilesWithPhoneAndFacility = [];
-
       if (appHiveController.directoryLastUpdate != today) {
         AppConfig.logger.i("Los datos en caché son antiguos. Cargando nuevos datos...");
         await appHiveController.clearBox(AppHiveBox.directory.name);
       } else {
         AppConfig.logger.i("Cargando directoryProfiles desde caché...");
-        var cachedProfiles = Hive.box(AppHiveBox.directory.name).get(AppHiveConstants.directoryProfiles);
+        var cachedProfiles = Hive.box(AppHiveBox.directory.name)
+            .get(isAdminCenter ? AppHiveConstants.adminDirectoryProfiles : AppHiveConstants.directoryProfiles);
         if (cachedProfiles != null && cachedProfiles is Map) {
-          profilesToShow.value = cachedProfiles.map((key, value) => MapEntry(key, AppProfile.fromJSON(value)));
+          directoryProfiles.value = cachedProfiles.map((key, value) => MapEntry(key, AppProfile.fromJSON(value)));
         } else {
-          profilesToShow.value = {};
+          directoryProfiles.value = {};
         }
       }
 
-      if(profilesToShow.isEmpty) await getProfilesToShow(profilesWithPhoneAndFacility);
+      if(directoryProfiles.isEmpty || isAdminCenter) await getDirectoryProfiles();
       
     } catch (e) {
       AppConfig.logger.e(e.toString());
@@ -99,24 +93,27 @@ class DirectoryController extends GetxController implements DirectoryService {
     update();
   }
 
-  Future<void> getProfilesToShow(List<AppProfile> profilesWithPhoneAndFacility) async {
-    if(!isAdminCenter) {
+  Future<void> getDirectoryProfiles() async {
+    AppConfig.logger.d("Getting Directory Profiles from Firestore");
+    List<AppProfile> profilesWithPhoneAndFacility = [];
+
+    if(isAdminCenter) {
+      directoryProfiles.clear();
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-          needsPhone: true, needsPosts: needsPosts,
-          // usageReasons: [UsageReason.professional, UsageReason.any],
-          ///DEPRECATED profileTypes: [ProfileType.facilitator, ProfileType.host, ProfileType.band, ProfileType.artist],
-          currentPosition: position,
-          maxDistance: 2000, limit: 100
+          needsPhone: true, currentPosition: position
       );
     } else {
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-        needsPhone: true, currentPosition: position
+          needsPhone: true, needsPosts: needsPosts,
+          profileTypes: [ProfileType.appArtist, ProfileType.host, ProfileType.band, ProfileType.facilitator],
+          currentPosition: position,
+          maxDistance: 2000, limit: 100
       );
     }
     
-    profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
-    Hive.box(AppHiveBox.directory.name).put(AppHiveConstants.directoryProfiles,
-        profilesToShow.map((key, value) => MapEntry(key, value.toJSONWithFacilities())));
+    directoryProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
+    Hive.box(AppHiveBox.directory.name).put(isAdminCenter ? AppHiveConstants.adminDirectoryProfiles : AppHiveConstants.directoryProfiles,
+        directoryProfiles.map((key, value) => MapEntry(key, value.toJSONWithFacilities())));
     Hive.box(AppHiveBox.directory.name).put(AppHiveConstants.lastUpdate, today);
   }
 
@@ -147,7 +144,7 @@ class DirectoryController extends GetxController implements DirectoryService {
         }
 
         AppConfig.logger.i("${nextProfiles.length} next Profiles with Facilities found");
-        profilesToShow.addAll(CoreUtilities.sortProfilesByLocation(position!, nextProfiles));
+        directoryProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, nextProfiles));
         isLoadingNextDirectory = false;
       }
 
@@ -160,6 +157,42 @@ class DirectoryController extends GetxController implements DirectoryService {
     }
 
     update([AppPageIdConstants.directory]);
+  }
+
+  void toggleProfileTypeFilter(ProfileType type) {
+    AppConfig.logger.d("Toggling filter for profile type: $type");
+    if (selectedProfileTypes.contains(type)) {
+      selectedProfileTypes.remove(type);
+    } else {
+      selectedProfileTypes.add(type);
+    }
+  }
+
+  Future<void> applyFilters() async {
+    AppConfig.logger.d("Applying filters: $selectedProfileTypes");
+    List<AppProfile> matchingProfiles = [];
+
+    isLoading.value = true;
+    filteredProfiles.clear();
+
+    if(selectedProfileTypes.isNotEmpty) {
+      for (AppProfile profile in directoryProfiles.values) {
+        if(selectedProfileTypes.contains(profile.type)) {
+          matchingProfiles.add(profile);
+        }
+      }
+      filteredProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, matchingProfiles));
+    }
+
+    isLoading.value = false;
+  }
+
+  /// Retorna la lista completa de tipos de perfil relevantes para el Directorio.
+  List<ProfileType> getAllFilterableProfileTypes() {
+
+    return ProfileType.values
+        .where((type) => type != ProfileType.general && type != ProfileType.researcher && type != ProfileType.broadcaster)
+        .toList();
   }
 
 }
