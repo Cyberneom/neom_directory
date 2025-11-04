@@ -23,10 +23,13 @@ class DirectoryPage extends StatelessWidget {
       init: DirectoryController(),
       builder: (controller) => Scaffold(
         appBar:  AppBarChild(
-          title: controller.isAdminCenter ? CommonTranslationConstants.usersDirectory.tr :  DirectoryTranslationConstants.businessDirectory.tr, color: Colors.transparent,
+          title: controller.isAdminCenter
+              ? CommonTranslationConstants.usersDirectory.tr
+              :  DirectoryTranslationConstants.businessDirectory.tr,
+          color: Colors.transparent,
+          titleSpacing: 15,
           actionWidgets: [
             Obx(() => IconButton(
-
               icon: Icon(
                 controller.selectedProfileTypes.isEmpty
                     ? Icons.filter_list_outlined
