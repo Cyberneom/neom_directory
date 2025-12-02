@@ -10,7 +10,7 @@ import 'package:neom_core/domain/model/app_profile.dart';
 
 import '../utils/constants/directory_translation_constants.dart';
 import 'directory_controller.dart';
-import 'widgets/directory_facility.dart';
+import 'widgets/directory_profile_card.dart';
 
 class DirectoryPage extends StatelessWidget {
   const DirectoryPage({super.key});
@@ -73,7 +73,7 @@ class DirectoryPage extends StatelessWidget {
         itemCount: directoryProfiles.length,
         controller: controller.directoryScrollController,
         itemBuilder: (context, index) {
-          return DirectoryFacility(directoryProfiles.values.elementAt(index),
+          return DirectoryProfileCard(directoryProfiles.values.elementAt(index),
             distanceBetween: directoryProfiles.keys.elementAt(index).round().toString(),);
         });
   }

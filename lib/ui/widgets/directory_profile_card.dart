@@ -8,6 +8,7 @@ import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_commons/ui/widgets/read_more_container.dart';
+import 'package:neom_commons/utils/auth_guard.dart';
 import 'package:neom_commons/utils/constants/app_constants.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
@@ -22,26 +23,26 @@ import '../../utils/constants/directory_translation_constants.dart';
 import '../directory_controller.dart';
 
 // ignore: must_be_immutable
-class DirectoryFacility extends StatefulWidget {
+class DirectoryProfileCard extends StatefulWidget {
 
   bool liked;
-  final AppProfile facilityProfile;
+  final AppProfile directoryProfile;
   int _currentIndex = 0;
   String distanceBetween;
 
-  DirectoryFacility(this.facilityProfile, {this.liked = false, this.distanceBetween = "", super.key});
+  DirectoryProfileCard(this.directoryProfile, {this.liked = false, this.distanceBetween = "", super.key});
 
   @override
-  DirectoryFacilityState createState() => DirectoryFacilityState();
+  DirectoryProfileCardState createState() => DirectoryProfileCardState();
 }
 
-class DirectoryFacilityState extends State<DirectoryFacility> {
+class DirectoryProfileCardState extends State<DirectoryProfileCard> {
 
-  AppProfile facilityProfile = AppProfile();
+  AppProfile directoryProfile = AppProfile();
   @override
   Widget build(BuildContext context) {
-    facilityProfile = widget.facilityProfile;
-    List<String> demoImgUrls = facilityProfile.facilities!.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
+    directoryProfile = widget.directoryProfile;
+    List<String> demoImgUrls = directoryProfile.facilities!.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
 
     return  GetBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
@@ -64,20 +65,20 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   height: AppTheme.fullHeight(context)/4,
                   child: Stack(
                     children: <Widget>[
-                      buildImageSlider(context, PageController(), widget._currentIndex, facilityProfile.id, demoImgUrls),
+                      buildImageSlider(context, PageController(), widget._currentIndex, directoryProfile.id, demoImgUrls),
                       buildWidgetImageIndicator(context, demoImgUrls, widget._currentIndex),
                       //TODO buildHeartWidget(context),
                     ],
                   ),
                 ),
                 if(controller.needsPosts && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
-                facilityAvatarSection(context, controller.userController.profile, facilityProfile,
-                    isAdminCenter: controller.isAdminCenter, showToContact: controller.userController.userSubscription != null),
+                directoryProfileAvatarSection(context, controller.userController.profile, directoryProfile,
+                    isAdminCenter: controller.isAdminCenter),
                 AppTheme.heightSpace10,
-                if(facilityProfile.aboutMe.isNotEmpty)
+                if(directoryProfile.aboutMe.isNotEmpty)
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: ReadMoreContainer(text: facilityProfile.aboutMe.capitalizeFirst, fontSize: 14,)
+                    child: ReadMoreContainer(text: directoryProfile.aboutMe.capitalizeFirst, fontSize: 14,)
                   ),
               ],
             ),
@@ -87,7 +88,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  PageView buildImageSlider(BuildContext context, PageController p, int index, String facilityId, List<String> demoImgUrls) {
+  PageView buildImageSlider(BuildContext context, PageController p, int index, String profileId, List<String> demoImgUrls) {
     return PageView.builder(
         controller: p..addListener(() {
           setState(() {
@@ -98,7 +99,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
         itemCount: demoImgUrls.length,
         itemBuilder: (context,index) {
           return GestureDetector(
-            onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityId),
+            onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: profileId),
             child: ClipRRect(
               child: HandledCachedNetworkImage(demoImgUrls.elementAt(index),
                 fit: BoxFit.fitWidth, enableFullScreen: false,
@@ -108,8 +109,8 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
     );
   }
 
-  Widget facilityAvatarSection(BuildContext context, AppProfile profile, AppProfile facilityProfile,
-      {bool showDots = true, bool isAdminCenter = false, bool showToContact = true}) {
+  Widget directoryProfileAvatarSection(BuildContext context, AppProfile profile, AppProfile directoryProfile,
+      {bool showDots = true, bool isAdminCenter = false}) {
     return Row(
       children: <Widget>[
         Expanded(
@@ -118,15 +119,15 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  if(facilityProfile.photoUrl.isNotEmpty)
+                  if(directoryProfile.photoUrl.isNotEmpty)
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
+                          onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
                           child: CircleAvatar(
                               backgroundColor: Colors.transparent,
                               backgroundImage: CachedNetworkImageProvider(
-                                facilityProfile.photoUrl.isNotEmpty ? facilityProfile.photoUrl
+                                directoryProfile.photoUrl.isNotEmpty ? directoryProfile.photoUrl
                                     : AppProperties.getNoImageUrl(),),
                               radius: 20),
                         ),
@@ -141,12 +142,12 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () => profile.id == facilityProfile.id
+                                onTap: () => profile.id == directoryProfile.id
                                     ? Get.toNamed(AppRouteConstants.profile)
-                                    : Get.toNamed(AppRouteConstants.mateDetails, arguments: facilityProfile.id),
-                                child: Text(facilityProfile.name.length < AppConstants.maxProfileNameLength
-                                    ? facilityProfile.name.capitalize
-                                    : "${facilityProfile.name.substring(0, AppConstants.maxProfileNameLength)}...",
+                                    : Get.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
+                                child: Text(directoryProfile.name.length < AppConstants.maxProfileNameLength
+                                    ? directoryProfile.name.capitalize
+                                    : "${directoryProfile.name.substring(0, AppConstants.maxProfileNameLength)}...",
                                     style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -156,13 +157,13 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                               AppTheme.widthSpace10,
                             ]
                         ),
-                        if(facilityProfile.address.isNotEmpty)
+                        if(directoryProfile.address.isNotEmpty)
                           Row(
                             children: [
                               const Icon(Icons.location_on, color: Colors.white, size: 12,),
                               AppTheme.widthSpace5,
-                              Text(facilityProfile.address.length <= CoreConstants.maxLocationNameLength
-                                  ? facilityProfile.address.capitalize: "${facilityProfile.address.substring(0, CoreConstants.maxLocationNameLength).capitalize}...",
+                              Text(directoryProfile.address.length <= CoreConstants.maxLocationNameLength
+                                  ? directoryProfile.address.capitalize: "${directoryProfile.address.substring(0, CoreConstants.maxLocationNameLength).capitalize}...",
                                   style: const TextStyle(fontSize: 12, color: Colors.white)
                               ),
                             ],
@@ -171,7 +172,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                           children: [
                             const Icon(Icons.room_service, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
-                            Text(facilityProfile.mainFeature.tr.capitalizeFirst,
+                            Text(directoryProfile.mainFeature.tr.capitalizeFirst,
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white
@@ -195,7 +196,7 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   )
                 ],
               ),
-              if(showToContact)
+              if(profile.showPhone)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 decoration: BoxDecoration(
@@ -206,19 +207,21 @@ class DirectoryFacilityState extends State<DirectoryFacility> {
                   child: Text(DirectoryTranslationConstants.toContact.tr,
                     style: const TextStyle(color: Colors.white),),
                   onTap: () {
-                    String message = '';
-                    if(isAdminCenter) {
-                      if(facilityProfile.type != ProfileType.general) {
-                        message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgC.tr}';
+                    AuthGuard.protect(context, () {
+                      String message = '';
+                      if(isAdminCenter) {
+                        if(directoryProfile.type != ProfileType.general) {
+                          message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${directoryProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgC.tr}';
+                        } else {
+                          message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${directoryProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgCFan.tr}';
+                        }
+
                       } else {
-                        message = '${DirectoryTranslationConstants.dirWhatsappAdminMsgA.tr} ${profile.name.tr} ${DirectoryTranslationConstants.dirWhatsappAdminMsgB.tr} "${facilityProfile.type.name.tr}". ${DirectoryTranslationConstants.dirWhatsappAdminMsgCFan.tr}';
+                        message = '${DirectoryTranslationConstants.dirWhatsappMsgA.tr} ${directoryProfile.mainFeature.tr} "${directoryProfile.name}" ${DirectoryTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
                       }
 
-                    } else {
-                      message = '${DirectoryTranslationConstants.dirWhatsappMsgA.tr} ${facilityProfile.mainFeature.tr} "${facilityProfile.name}" ${DirectoryTranslationConstants.dirWhatsappMsgB.tr} @${profile.name}';
-                    }
-
-                    ExternalUtilities.launchWhatsappURL(widget.facilityProfile.phoneNumber, message);
+                      ExternalUtilities.launchWhatsappURL(widget.directoryProfile.phoneNumber, message);
+                    });
                   },
                 ),
               ),
