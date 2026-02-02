@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neom_commons/app_flavour.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
@@ -21,9 +21,9 @@ import 'package:neom_core/utils/enums/usage_reason.dart';
 import '../../domain/use_cases/directory_service.dart';
 
 
-class DirectoryController extends GetxController implements DirectoryService {
+class DirectoryController extends SintController implements DirectoryService {
 
-  final userController = Get.find<UserController>();
+  final userController = Sint.find<UserController>();
   final appHiveController = AppHiveController();
 
   ProfileFirestore profileFirestore = ProfileFirestore();
@@ -52,8 +52,8 @@ class DirectoryController extends GetxController implements DirectoryService {
 
     profile = userController.profile;
 
-    if(Get.arguments != null && Get.arguments.isNotEmpty) {
-      isAdminCenter = Get.arguments[0] ?? false;
+    if(Sint.arguments != null && Sint.arguments.isNotEmpty) {
+      isAdminCenter = Sint.arguments[0] ?? false;
       needsPosts = false;
       AppConfig.logger.d("isAdminCenter: $isAdminCenter");
     }

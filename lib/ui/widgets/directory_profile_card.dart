@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
@@ -44,7 +44,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
     directoryProfile = widget.directoryProfile;
     List<String> demoImgUrls = directoryProfile.facilities!.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
 
-    return  GetBuilder<DirectoryController>(
+    return  SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
       builder: (controller) => Container(
         decoration: BoxDecoration(
@@ -99,7 +99,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
         itemCount: demoImgUrls.length,
         itemBuilder: (context,index) {
           return GestureDetector(
-            onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: profileId),
+            onTap: () => Sint.toNamed(AppRouteConstants.mateDetails, arguments: profileId),
             child: ClipRRect(
               child: HandledCachedNetworkImage(demoImgUrls.elementAt(index),
                 fit: BoxFit.fitWidth, enableFullScreen: false,
@@ -123,7 +123,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () => Get.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
+                          onTap: () => Sint.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
                           child: CircleAvatar(
                               backgroundColor: Colors.transparent,
                               backgroundImage: CachedNetworkImageProvider(
@@ -143,8 +143,8 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                             children: <Widget>[
                               GestureDetector(
                                 onTap: () => profile.id == directoryProfile.id
-                                    ? Get.toNamed(AppRouteConstants.profile)
-                                    : Get.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
+                                    ? Sint.toNamed(AppRouteConstants.profile)
+                                    : Sint.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
                                 child: Text(directoryProfile.name.length < AppConstants.maxProfileNameLength
                                     ? directoryProfile.name.capitalize
                                     : "${directoryProfile.name.substring(0, AppConstants.maxProfileNameLength)}...",

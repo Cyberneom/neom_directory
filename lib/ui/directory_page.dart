@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
@@ -17,8 +17,8 @@ class DirectoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.delete<DirectoryController>();
-    return GetBuilder<DirectoryController>(
+    Sint.delete<DirectoryController>();
+    return SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (controller) => Scaffold(
@@ -80,7 +80,7 @@ class DirectoryPage extends StatelessWidget {
 
   // 6. Método para mostrar el modal de filtro
   void _showFilterModal(BuildContext context, DirectoryController controller) {
-    Get.bottomSheet(
+    Sint.bottomSheet(
       Obx(() => Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
