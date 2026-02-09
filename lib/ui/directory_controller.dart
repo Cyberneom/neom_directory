@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:sint/sint.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neom_commons/app_flavour.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
@@ -17,6 +16,7 @@ import 'package:neom_core/utils/core_utilities.dart';
 import 'package:neom_core/utils/enums/app_hive_box.dart';
 import 'package:neom_core/utils/enums/profile_type.dart';
 import 'package:neom_core/utils/enums/usage_reason.dart';
+import 'package:sint/sint.dart';
 
 import '../../domain/use_cases/directory_service.dart';
 

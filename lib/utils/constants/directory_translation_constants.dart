@@ -1,5 +1,6 @@
 class DirectoryTranslationConstants {
 
+  static const String mexico = "mexico";
   static const String toContact = "toContact";
   static const String businessDirectory = 'businessDirectory';
   static const String dirWhatsappMsgA = 'dirWhatsappMsgA';

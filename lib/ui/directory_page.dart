@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sint/sint.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
@@ -7,6 +6,7 @@ import 'package:neom_commons/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
+import 'package:sint/sint.dart';
 
 import '../utils/constants/directory_translation_constants.dart';
 import 'directory_controller.dart';
