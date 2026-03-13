@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -20,9 +19,7 @@ import 'package:sint/sint.dart';
 
 import '../../domain/use_cases/directory_service.dart';
 
-
 class DirectoryController extends SintController implements DirectoryService {
-
   final userController = Sint.find<UserController>();
   final appHiveController = AppHiveController();
 
@@ -39,7 +36,8 @@ class DirectoryController extends SintController implements DirectoryService {
   final RxBool isButtonDisabled = false.obs;
   final RxBool isLoading = true.obs;
   final RxBool isUploading = false.obs;
-  final RxMap<double, AppProfile> directoryProfiles = <double, AppProfile>{}.obs;
+  final RxMap<double, AppProfile> directoryProfiles =
+      <double, AppProfile>{}.obs;
   final RxMap<double, AppProfile> filteredProfiles = <double, AppProfile>{}.obs;
   final RxList<ProfileType> selectedProfileTypes = <ProfileType>[].obs;
 
@@ -52,14 +50,13 @@ class DirectoryController extends SintController implements DirectoryService {
 
     profile = userController.profile;
 
-    if(Sint.arguments != null && Sint.arguments.isNotEmpty) {
+    if (Sint.arguments != null && Sint.arguments.isNotEmpty) {
       isAdminCenter = Sint.arguments[0] ?? false;
       needsPosts = false;
       AppConfig.logger.d("isAdminCenter: $isAdminCenter");
     }
 
     directoryScrollController.addListener(_directoryScrollListener);
-
   }
 
   @override
@@ -67,24 +64,35 @@ class DirectoryController extends SintController implements DirectoryService {
     super.onReady();
     AppConfig.logger.d("onReady");
     try {
-      position = profile.position ?? await GeoLocatorController().getCurrentPosition();
+      position =
+          profile.position ?? await GeoLocatorController().getCurrentPosition();
 
       if (appHiveController.directoryLastUpdate != today) {
-        AppConfig.logger.i("Los datos en caché son antiguos. Cargando nuevos datos...");
+        AppConfig.logger.i(
+          "Los datos en caché son antiguos. Cargando nuevos datos...",
+        );
         await appHiveController.clearBox(AppHiveBox.directory.name);
       } else {
         AppConfig.logger.i("Cargando directoryProfiles desde caché...");
-        var cachedProfiles = Hive.box(AppHiveBox.directory.name)
-            .get(isAdminCenter ? AppHiveConstants.adminDirectoryProfiles : AppHiveConstants.directoryProfiles);
+        final directoryBox = await appHiveController.getBox(
+          AppHiveBox.directory.name,
+        );
+        var cachedProfiles = directoryBox.get(
+          isAdminCenter
+              ? AppHiveConstants.adminDirectoryProfiles
+              : AppHiveConstants.directoryProfiles,
+        );
         if (cachedProfiles != null && cachedProfiles is Map) {
-          directoryProfiles.value = cachedProfiles.map((key, value) => MapEntry(key, AppProfile.fromJSON(value)));
+          directoryProfiles.value = cachedProfiles.map(
+            (key, value) => MapEntry(key, AppProfile.fromJSON(value)),
+          );
         } else {
           directoryProfiles.value = {};
         }
       }
 
-      if(directoryProfiles.isEmpty || isAdminCenter) await getDirectoryProfiles();
-      
+      if (directoryProfiles.isEmpty || isAdminCenter)
+        await getDirectoryProfiles();
     } catch (e) {
       AppConfig.logger.e(e.toString());
     }
@@ -97,45 +105,71 @@ class DirectoryController extends SintController implements DirectoryService {
     AppConfig.logger.d("Getting Directory Profiles from Firestore");
     List<AppProfile> profilesWithPhoneAndFacility = [];
 
-    if(isAdminCenter) {
+    if (isAdminCenter) {
       directoryProfiles.clear();
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-          needsPhone: true, currentPosition: position
+        needsPhone: true,
+        currentPosition: position,
       );
     } else {
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-          needsPhone: true, needsPosts: needsPosts,
-          profileTypes: [ProfileType.appArtist, ProfileType.host, ProfileType.band, ProfileType.facilitator],
-          currentPosition: position,
-          maxDistance: 2000, limit: 100
+        needsPhone: true,
+        needsPosts: needsPosts,
+        profileTypes: [
+          ProfileType.appArtist,
+          ProfileType.host,
+          ProfileType.band,
+          ProfileType.facilitator,
+        ],
+        currentPosition: position,
+        maxDistance: 2000,
+        limit: 100,
       );
     }
-    
-    directoryProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, profilesWithPhoneAndFacility));
-    Hive.box(AppHiveBox.directory.name).put(isAdminCenter ? AppHiveConstants.adminDirectoryProfiles : AppHiveConstants.directoryProfiles,
-        directoryProfiles.map((key, value) => MapEntry(key, value.toJSONWithFacilities())));
-    Hive.box(AppHiveBox.directory.name).put(AppHiveConstants.lastUpdate, today);
+
+    directoryProfiles.addAll(
+      CoreUtilities.sortProfilesByLocation(
+        position!,
+        profilesWithPhoneAndFacility,
+      ),
+    );
+    final directoryBox = await appHiveController.getBox(
+      AppHiveBox.directory.name,
+    );
+    directoryBox.put(
+      isAdminCenter
+          ? AppHiveConstants.adminDirectoryProfiles
+          : AppHiveConstants.directoryProfiles,
+      directoryProfiles.map(
+        (key, value) => MapEntry(key, value.toJSONWithFacilities()),
+      ),
+    );
+    directoryBox.put(AppHiveConstants.lastUpdate, today);
   }
 
   void _directoryScrollListener() async {
     try {
+      double maxScrollExtent =
+          directoryScrollController.position.maxScrollExtent;
 
-      double maxScrollExtent = directoryScrollController.position.maxScrollExtent;
-
-      if (directoryScrollController.offset >= maxScrollExtent
-          && !directoryScrollController.position.outOfRange
-          && !isLoadingNextDirectory
-      ) {
+      if (directoryScrollController.offset >= maxScrollExtent &&
+          !directoryScrollController.position.outOfRange &&
+          !isLoadingNextDirectory) {
         AppConfig.logger.d("Directory Bottom Reached");
         isLoadingNextDirectory = true;
         update([AppPageIdConstants.directory]);
 
         List<AppProfile> nextProfiles = [];
-        if(!isAdminCenter) {
+        if (!isAdminCenter) {
           nextProfiles = await profileFirestore.getWithParameters(
-              needsPhone: true, needsPosts: needsPosts,
-              usageReasons: [UsageReason.professional],
-              profileTypes: AppFlavour.getDirectoryProfileTypes(), currentPosition: position, maxDistance: 2000, limit: 10, isFirstCall: false,
+            needsPhone: true,
+            needsPosts: needsPosts,
+            usageReasons: [UsageReason.professional],
+            profileTypes: AppFlavour.getDirectoryProfileTypes(),
+            currentPosition: position,
+            maxDistance: 2000,
+            limit: 10,
+            isFirstCall: false,
           );
         } else {
           nextProfiles = await profileFirestore.getWithParameters(
@@ -143,12 +177,17 @@ class DirectoryController extends SintController implements DirectoryService {
           );
         }
 
-        AppConfig.logger.i("${nextProfiles.length} next Profiles with Facilities found");
-        directoryProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, nextProfiles));
+        AppConfig.logger.i(
+          "${nextProfiles.length} next Profiles with Facilities found",
+        );
+        directoryProfiles.addAll(
+          CoreUtilities.sortProfilesByLocation(position!, nextProfiles),
+        );
         isLoadingNextDirectory = false;
       }
 
-      if (directoryScrollController.offset <= directoryScrollController.position.minScrollExtent &&
+      if (directoryScrollController.offset <=
+              directoryScrollController.position.minScrollExtent &&
           !directoryScrollController.position.outOfRange) {
         AppConfig.logger.d("Scrolling cool");
       }
@@ -175,13 +214,15 @@ class DirectoryController extends SintController implements DirectoryService {
     isLoading.value = true;
     filteredProfiles.clear();
 
-    if(selectedProfileTypes.isNotEmpty) {
+    if (selectedProfileTypes.isNotEmpty) {
       for (AppProfile profile in directoryProfiles.values) {
-        if(selectedProfileTypes.contains(profile.type)) {
+        if (selectedProfileTypes.contains(profile.type)) {
           matchingProfiles.add(profile);
         }
       }
-      filteredProfiles.addAll(CoreUtilities.sortProfilesByLocation(position!, matchingProfiles));
+      filteredProfiles.addAll(
+        CoreUtilities.sortProfilesByLocation(position!, matchingProfiles),
+      );
     }
 
     isLoading.value = false;
@@ -189,10 +230,13 @@ class DirectoryController extends SintController implements DirectoryService {
 
   /// Retorna la lista completa de tipos de perfil relevantes para el Directorio.
   List<ProfileType> getAllFilterableProfileTypes() {
-
     return ProfileType.values
-        .where((type) => type != ProfileType.general && type != ProfileType.researcher && type != ProfileType.broadcaster)
+        .where(
+          (type) =>
+              type != ProfileType.general &&
+              type != ProfileType.researcher &&
+              type != ProfileType.broadcaster,
+        )
         .toList();
   }
-
 }

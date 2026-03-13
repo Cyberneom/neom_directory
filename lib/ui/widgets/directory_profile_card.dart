@@ -1,8 +1,8 @@
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:neom_commons/ui/widgets/custom_image.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
@@ -99,7 +99,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
         itemCount: demoImgUrls.length,
         itemBuilder: (context,index) {
           return GestureDetector(
-            onTap: () => Sint.toNamed(AppRouteConstants.mateDetails, arguments: profileId),
+            onTap: () => Sint.toNamed(AppRouteConstants.matePath(profileId), arguments: profileId),
             child: ClipRRect(
               child: HandledCachedNetworkImage(demoImgUrls.elementAt(index),
                 fit: BoxFit.fitWidth, enableFullScreen: false,
@@ -123,10 +123,10 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () => Sint.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
+                          onTap: () => Sint.toNamed(AppRouteConstants.matePath(directoryProfile.id), arguments: directoryProfile.id),
                           child: CircleAvatar(
                               backgroundColor: Colors.transparent,
-                              backgroundImage: CachedNetworkImageProvider(
+                              backgroundImage: platformImageProvider(
                                 directoryProfile.photoUrl.isNotEmpty ? directoryProfile.photoUrl
                                     : AppProperties.getNoImageUrl(),),
                               radius: 20),
@@ -144,7 +144,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                               GestureDetector(
                                 onTap: () => profile.id == directoryProfile.id
                                     ? Sint.toNamed(AppRouteConstants.profile)
-                                    : Sint.toNamed(AppRouteConstants.mateDetails, arguments: directoryProfile.id),
+                                    : Sint.toNamed(AppRouteConstants.matePath(directoryProfile.id), arguments: directoryProfile.id),
                                 child: Text(directoryProfile.name.length < AppConstants.maxProfileNameLength
                                     ? directoryProfile.name.capitalize
                                     : "${directoryProfile.name.substring(0, AppConstants.maxProfileNameLength)}...",

@@ -39,7 +39,7 @@ class DirectoryPage extends StatelessWidget {
             )),
           ],
         ),
-        backgroundColor: AppColor.main75,
+        backgroundColor: AppColor.surfaceElevated,
         body: Obx(()=> SafeArea(
           child: controller.isLoading.value ? AppCircularProgressIndicator(subtitle: controller.isAdminCenter ? CommonTranslationConstants.usersDirectory : DirectoryTranslationConstants.businessDirectory.tr,)
               : Stack(
