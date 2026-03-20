@@ -124,12 +124,13 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                       children: [
                         GestureDetector(
                           onTap: () => Sint.toNamed(AppRouteConstants.matePath(directoryProfile.id), arguments: directoryProfile.id),
-                          child: CircleAvatar(
+                          child: platformCircleAvatar(
+                              imageUrl: directoryProfile.photoUrl.isNotEmpty
+                                  ? directoryProfile.photoUrl
+                                  : AppProperties.getNoImageUrl(),
+                              radius: 20,
                               backgroundColor: Colors.transparent,
-                              backgroundImage: platformImageProvider(
-                                directoryProfile.photoUrl.isNotEmpty ? directoryProfile.photoUrl
-                                    : AppProperties.getNoImageUrl(),),
-                              radius: 20),
+                          ),
                         ),
                         AppTheme.widthSpace10,
                       ],

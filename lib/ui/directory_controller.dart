@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neom_commons/app_flavour.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_core/app_config.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/data/firestore/profile_firestore.dart';
 import 'package:neom_core/data/implementations/app_hive_controller.dart';
 import 'package:neom_core/data/implementations/geolocator_controller.dart';
@@ -93,8 +94,8 @@ class DirectoryController extends SintController implements DirectoryService {
 
       if (directoryProfiles.isEmpty || isAdminCenter)
         await getDirectoryProfiles();
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_directory', operation: 'onReady');
     }
 
     isLoading.value = false;
@@ -191,8 +192,8 @@ class DirectoryController extends SintController implements DirectoryService {
           !directoryScrollController.position.outOfRange) {
         AppConfig.logger.d("Scrolling cool");
       }
-    } catch (e) {
-      AppConfig.logger.e(e.toString());
+    } catch (e, st) {
+      NeomErrorLogger.recordError(e, st, module: 'neom_directory', operation: '_directoryScrollListener');
     }
 
     update([AppPageIdConstants.directory]);

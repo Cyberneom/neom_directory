@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
-import 'package:neom_commons/ui/widgets/appbar_child.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
@@ -22,13 +21,13 @@ class DirectoryPage extends StatelessWidget {
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (controller) => Scaffold(
-        appBar:  AppBarChild(
+        appBar:  SintAppBar(
           title: controller.isAdminCenter
               ? CommonTranslationConstants.usersDirectory.tr
               :  DirectoryTranslationConstants.businessDirectory.tr,
-          color: Colors.transparent,
+          backgroundColor: Colors.transparent,
           titleSpacing: 15,
-          actionWidgets: [
+          actions: [
             Obx(() => IconButton(
               icon: Icon(
                 controller.selectedProfileTypes.isEmpty
