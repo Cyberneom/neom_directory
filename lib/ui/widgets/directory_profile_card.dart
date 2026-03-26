@@ -8,6 +8,7 @@ import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/images/handled_cached_network_image.dart';
 import 'package:neom_commons/ui/widgets/read_more_container.dart';
 import 'package:neom_commons/utils/auth_guard.dart';
+import 'package:neom_core/utils/enums/experience_level.dart';
 import 'package:neom_commons/utils/constants/app_constants.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
@@ -46,7 +47,9 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
 
     return  SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
-      builder: (controller) => Container(
+      builder: (controller) => GestureDetector(
+        onTap: () => Sint.toNamed(AppRouteConstants.matePath(directoryProfile.id), arguments: directoryProfile.id),
+        child: Container(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(style: BorderStyle.solid, color: Colors.grey, width: 0.5)
@@ -58,7 +61,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                if(controller.needsPosts && demoImgUrls.isNotEmpty) Container(
+                if(controller.needsPosts.value && demoImgUrls.isNotEmpty) Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                   ),
@@ -71,7 +74,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                     ],
                   ),
                 ),
-                if(controller.needsPosts && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
+                if(controller.needsPosts.value && demoImgUrls.isNotEmpty)  const Divider(thickness: 1),
                 directoryProfileAvatarSection(context, controller.userController.profile, directoryProfile,
                     isAdminCenter: controller.isAdminCenter),
                 AppTheme.heightSpace10,
@@ -80,10 +83,36 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                     alignment: Alignment.centerLeft,
                     child: ReadMoreContainer(text: directoryProfile.aboutMe.capitalizeFirst, fontSize: 14,)
                   ),
+                if (directoryProfile.skills != null && directoryProfile.skills!.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 6,
+                    children: directoryProfile.skills!.values.take(3).map((skill) {
+                      final color = skill.experienceLevel == ExperienceLevel.pro
+                          ? Colors.greenAccent
+                          : skill.experienceLevel == ExperienceLevel.intermediate
+                              ? Colors.amber
+                              : Colors.grey;
+                      return Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: color.withValues(alpha: 0.25)),
+                        ),
+                        child: Text(
+                            skill.price > 0 ? '${skill.name} · ${skill.priceDisplay}' : skill.name,
+                            style: TextStyle(color: color, fontSize: 11, fontWeight: FontWeight.w500)),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ],
             ),
           ),
         ),
+      ),
       )
     );
   }

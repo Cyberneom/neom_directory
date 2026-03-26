@@ -8,6 +8,8 @@ class DirectoryFrTranslations {
     DirectoryTranslationConstants.dirWhatsappMsgB: 'sur Cyberneom. J\'aimerais obtenir plus d\'informations.',
     DirectoryTranslationConstants.mexico: 'Mexique',
     DirectoryTranslationConstants.noNearResultsWereFound: 'Aucun résultat à proximité n\'a été trouvé',
+    DirectoryTranslationConstants.category: 'Categorie',
+    DirectoryTranslationConstants.professionals: 'professionnels',
   };
 
 }

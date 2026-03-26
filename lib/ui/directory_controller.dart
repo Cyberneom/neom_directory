@@ -16,6 +16,7 @@ import 'package:neom_core/utils/core_utilities.dart';
 import 'package:neom_core/utils/enums/app_hive_box.dart';
 import 'package:neom_core/utils/enums/profile_type.dart';
 import 'package:neom_core/utils/enums/usage_reason.dart';
+import 'package:neom_core/utils/enums/verification_level.dart';
 import 'package:sint/sint.dart';
 
 import '../../domain/use_cases/directory_service.dart';
@@ -31,7 +32,7 @@ class DirectoryController extends SintController implements DirectoryService {
   AppProfile profile = AppProfile();
   Position? position;
 
-  bool needsPosts = true;
+  final RxBool needsPosts = false.obs;
   bool isAdminCenter = false;
 
   final RxBool isButtonDisabled = false.obs;
@@ -41,6 +42,10 @@ class DirectoryController extends SintController implements DirectoryService {
       <double, AppProfile>{}.obs;
   final RxMap<double, AppProfile> filteredProfiles = <double, AppProfile>{}.obs;
   final RxList<ProfileType> selectedProfileTypes = <ProfileType>[].obs;
+
+  /// Immutable copy of all loaded profiles — never cleared by filters.
+  /// Used as source of truth when applying/removing filters.
+  Map<double, AppProfile> _allProfiles = {};
 
   String today = '';
 
@@ -53,7 +58,7 @@ class DirectoryController extends SintController implements DirectoryService {
 
     if (Sint.arguments != null && Sint.arguments.isNotEmpty) {
       isAdminCenter = Sint.arguments[0] ?? false;
-      needsPosts = false;
+      needsPosts.value = false;
       AppConfig.logger.d("isAdminCenter: $isAdminCenter");
     }
 
@@ -92,8 +97,12 @@ class DirectoryController extends SintController implements DirectoryService {
         }
       }
 
-      if (directoryProfiles.isEmpty || isAdminCenter)
+      if (directoryProfiles.isEmpty || isAdminCenter) {
         await getDirectoryProfiles();
+      }
+
+      _allProfiles = Map.from(directoryProfiles);
+      filteredProfiles.assignAll(directoryProfiles);
     } catch (e, st) {
       NeomErrorLogger.recordError(e, st, module: 'neom_directory', operation: 'onReady');
     }
@@ -115,23 +124,29 @@ class DirectoryController extends SintController implements DirectoryService {
     } else {
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
         needsPhone: true,
-        needsPosts: needsPosts,
-        profileTypes: [
-          ProfileType.appArtist,
-          ProfileType.host,
-          ProfileType.band,
-          ProfileType.facilitator,
-        ],
+        needsPosts: needsPosts.value,
+        profileTypes: ProfileType.values.where((t) => t != ProfileType.general).toList(),
         currentPosition: position,
-        maxDistance: 2000,
-        limit: 100,
+        maxDistance: 5000,
+        limit: 200,
       );
     }
+
+    // Sort by plan tier (premium/platinum first for visibility incentive).
+    final subscribedProfiles = profilesWithPhoneAndFacility
+        .where((p) => p.verificationLevel.value >= VerificationLevel.basic.value)
+        .toList()
+      ..sort((a, b) => b.verificationLevel.value.compareTo(a.verificationLevel.value));
+
+    // Add non-subscribed at the end (lower priority)
+    final nonSubscribed = profilesWithPhoneAndFacility
+        .where((p) => p.verificationLevel.value < VerificationLevel.basic.value)
+        .toList();
 
     directoryProfiles.addAll(
       CoreUtilities.sortProfilesByLocation(
         position!,
-        profilesWithPhoneAndFacility,
+        [...subscribedProfiles, ...nonSubscribed],
       ),
     );
     final directoryBox = await appHiveController.getBox(
@@ -164,7 +179,7 @@ class DirectoryController extends SintController implements DirectoryService {
         if (!isAdminCenter) {
           nextProfiles = await profileFirestore.getWithParameters(
             needsPhone: true,
-            needsPosts: needsPosts,
+            needsPosts: needsPosts.value,
             usageReasons: [UsageReason.professional],
             profileTypes: AppFlavour.getDirectoryProfileTypes(),
             currentPosition: position,
@@ -199,6 +214,20 @@ class DirectoryController extends SintController implements DirectoryService {
     update([AppPageIdConstants.directory]);
   }
 
+  Future<void> toggleNeedsPosts() async {
+    needsPosts.value = !needsPosts.value;
+    directoryProfiles.clear();
+    filteredProfiles.clear();
+    isLoading.value = true;
+    await appHiveController.clearBox(AppHiveBox.directory.name);
+    await getDirectoryProfiles();
+    _allProfiles = Map.from(directoryProfiles);
+    filteredProfiles.assignAll(directoryProfiles);
+    isLoading.value = false;
+    update();
+  }
+
+  /// Toggle a category filter and immediately apply.
   void toggleProfileTypeFilter(ProfileType type) {
     AppConfig.logger.d("Toggling filter for profile type: $type");
     if (selectedProfileTypes.contains(type)) {
@@ -206,27 +235,59 @@ class DirectoryController extends SintController implements DirectoryService {
     } else {
       selectedProfileTypes.add(type);
     }
+    // Apply immediately — no separate "filtrar" button needed
+    applyFilters();
   }
 
   Future<void> applyFilters() async {
     AppConfig.logger.d("Applying filters: $selectedProfileTypes");
-    List<AppProfile> matchingProfiles = [];
 
-    isLoading.value = true;
-    filteredProfiles.clear();
+    // Always use _allProfiles as the immutable source of truth
+    final source = _allProfiles.isNotEmpty ? _allProfiles : directoryProfiles;
 
-    if (selectedProfileTypes.isNotEmpty) {
-      for (AppProfile profile in directoryProfiles.values) {
-        if (selectedProfileTypes.contains(profile.type)) {
-          matchingProfiles.add(profile);
-        }
-      }
-      filteredProfiles.addAll(
-        CoreUtilities.sortProfilesByLocation(position!, matchingProfiles),
-      );
+    // No filters selected = show ALL profiles
+    if (selectedProfileTypes.isEmpty) {
+      filteredProfiles.value = Map<double, AppProfile>.from(source);
+      update();
+      return;
     }
 
-    isLoading.value = false;
+    // Filter by selected category types
+    final result = <double, AppProfile>{};
+    for (final entry in source.entries) {
+      if (selectedProfileTypes.contains(entry.value.type)) {
+        result[entry.key] = entry.value;
+      }
+    }
+    AppConfig.logger.d("Filter: ${source.length} total, "
+        "${result.length} match. "
+        "Types in directory: ${source.values.map((p) => p.type.name).toSet()}");
+
+    filteredProfiles.value = result;
+    update();
+  }
+
+  /// Text-based search filter for web. Matches name, aboutMe, mainFeature, address.
+  void filterByQuery(String query) {
+    if (query.trim().isEmpty) {
+      filteredProfiles.assignAll(directoryProfiles);
+      return;
+    }
+    final q = query.toLowerCase();
+    final matching = <double, AppProfile>{};
+    for (final entry in directoryProfiles.entries) {
+      final p = entry.value;
+      final hasSkillMatch = p.skills?.values.any(
+          (s) => s.name.toLowerCase().contains(q)) ?? false;
+      if (p.name.toLowerCase().contains(q) ||
+          p.aboutMe.toLowerCase().contains(q) ||
+          p.mainFeature.toLowerCase().contains(q) ||
+          p.address.toLowerCase().contains(q) ||
+          hasSkillMatch) {
+        matching[entry.key] = p;
+      }
+    }
+    filteredProfiles.assignAll(matching);
   }
 
   /// Retorna la lista completa de tipos de perfil relevantes para el Directorio.

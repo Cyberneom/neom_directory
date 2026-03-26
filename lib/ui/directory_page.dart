@@ -1,14 +1,17 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
 import 'package:neom_commons/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
+import 'package:neom_commons/utils/constants/translations/app_translation_constants.dart';
 import 'package:neom_commons/utils/constants/translations/common_translation_constants.dart';
 import 'package:neom_core/domain/model/app_profile.dart';
 import 'package:sint/sint.dart';
 
 import '../utils/constants/directory_translation_constants.dart';
 import 'directory_controller.dart';
+import 'web/directory_web_page.dart';
 import 'widgets/directory_profile_card.dart';
 
 class DirectoryPage extends StatelessWidget {
@@ -20,7 +23,11 @@ class DirectoryPage extends StatelessWidget {
     return SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
-      builder: (controller) => Scaffold(
+      builder: (controller) {
+        if (kIsWeb && MediaQuery.of(context).size.width > 900) {
+          return DirectoryWebPage(controller: controller);
+        }
+        return Scaffold(
         appBar:  SintAppBar(
           title: controller.isAdminCenter
               ? CommonTranslationConstants.usersDirectory.tr
@@ -60,8 +67,8 @@ class DirectoryPage extends StatelessWidget {
           )
         )
         )
-      )
-    );
+      );
+    });
   }
 
   ListView buildDirectoryProfilesListView(Map<double, AppProfile> directoryProfiles, {required DirectoryController controller}) {
@@ -110,17 +117,10 @@ class DirectoryPage extends StatelessWidget {
               );
             }),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                controller.applyFilters();
-                Navigator.pop(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.bondiBlue75,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-              ),
-              child: Text("Aplicar Filtros (${controller.selectedProfileTypes.length} seleccionados)",
-                style: const TextStyle(fontSize: 16, color: Colors.white),
+            TextButton(
+              onPressed: () => Sint.back(),
+              child: Text(AppTranslationConstants.close.tr,
+                style: const TextStyle(fontSize: 16, color: Colors.white70),
               ),
             ),
           ],
