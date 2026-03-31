@@ -46,7 +46,8 @@ class DirectoryWebFilterSidebar extends StatelessWidget {
               _buildTypeChip(ProfileType.appArtist, Icons.edit, Colors.purple),
               _buildTypeChip(ProfileType.facilitator, Icons.handyman, Colors.teal),
               _buildTypeChip(ProfileType.host, Icons.event, Colors.orange),
-              _buildTypeChip(ProfileType.band, Icons.people, Colors.blue),
+              //TODO When bands | collectives | tribes have accounts.
+              // _buildTypeChip(ProfileType.band, Icons.people, Colors.blue),
             ],
           )),
 
