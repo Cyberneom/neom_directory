@@ -249,7 +249,7 @@ class _DirectoryWebCardState extends State<DirectoryWebCard> {
       case ProfileType.appArtist: return Colors.purple;
       case ProfileType.facilitator: return Colors.teal;
       case ProfileType.host: return Colors.orange;
-      case ProfileType.band: return Colors.blue;
+      case ProfileType.collective: return Colors.blue;
       default: return Colors.grey;
     }
   }
@@ -284,7 +284,7 @@ class _DirectoryWebCardState extends State<DirectoryWebCard> {
       case ProfileType.appArtist: return Icons.edit;
       case ProfileType.facilitator: return Icons.handyman;
       case ProfileType.host: return Icons.event;
-      case ProfileType.band: return Icons.people;
+      case ProfileType.collective: return Icons.people;
       default: return Icons.person;
     }
   }

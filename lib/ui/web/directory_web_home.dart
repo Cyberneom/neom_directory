@@ -70,43 +70,11 @@ class DirectoryWebHome extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // Search bar
-              Container(
-                height: 48,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        onChanged: controller.filterByQuery,
-                        style: const TextStyle(color: Colors.black87, fontSize: 15),
-                        decoration: InputDecoration(
-                          hintText: DirectoryTranslationConstants.searchHint.tr,
-                          hintStyle: TextStyle(color: Colors.grey[500]),
-                          prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(4),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.bondiBlue,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
-                        ),
-                        onPressed: () {},
-                        child: const Icon(Icons.search, size: 20),
-                      ),
-                    ),
-                  ],
-                ),
+              // Search bar with focus animation
+              _AnimatedSearchBar(
+                onChanged: controller.filterByQuery,
+                hintText: DirectoryTranslationConstants.searchHint.tr,
+                onSearch: () {},
               ),
             ],
           ),
@@ -297,6 +265,80 @@ class DirectoryWebHome extends StatelessWidget {
       child: Text(
         '${AppProperties.getAppName()} ${DirectoryTranslationConstants.businessDirectory.tr}',
         style: TextStyle(color: Colors.grey[700], fontSize: 12),
+      ),
+    );
+  }
+}
+
+class _AnimatedSearchBar extends StatefulWidget {
+  final ValueChanged<String> onChanged;
+  final String hintText;
+  final VoidCallback onSearch;
+
+  const _AnimatedSearchBar({
+    required this.onChanged,
+    required this.hintText,
+    required this.onSearch,
+  });
+
+  @override
+  State<_AnimatedSearchBar> createState() => _AnimatedSearchBarState();
+}
+
+class _AnimatedSearchBarState extends State<_AnimatedSearchBar> {
+  bool _focused = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 150),
+      height: 48,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: _focused ? AppColor.bondiBlue : Colors.transparent,
+          width: 2,
+        ),
+        boxShadow: _focused
+            ? [BoxShadow(color: Colors.black.withAlpha(40), blurRadius: 12)]
+            : [],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Focus(
+              onFocusChange: (hasFocus) => setState(() => _focused = hasFocus),
+              child: TextField(
+                onChanged: widget.onChanged,
+                style: const TextStyle(color: Colors.black87, fontSize: 15),
+                decoration: InputDecoration(
+                  hintText: widget.hintText,
+                  hintStyle: TextStyle(color: Colors.grey[500]),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: _focused ? AppColor.bondiBlue : Colors.grey,
+                  ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.all(4),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColor.getReleaseShelfColor(),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+              ),
+              onPressed: widget.onSearch,
+              child: const Icon(Icons.search, size: 20),
+            ),
+          ),
+        ],
       ),
     );
   }

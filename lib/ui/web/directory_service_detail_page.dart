@@ -336,7 +336,7 @@ class _DirectoryServiceDetailPageState extends State<DirectoryServiceDetailPage>
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColor.bondiBlue,
+                      backgroundColor: AppColor.getReleaseShelfColor(),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

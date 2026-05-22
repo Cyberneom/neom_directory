@@ -231,7 +231,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                 padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: AppColor.bondiBlue
+                    color: AppColor.getReleaseShelfColor(),
                 ),
                 child: InkWell(
                   child: Text(DirectoryTranslationConstants.toContact.tr,
