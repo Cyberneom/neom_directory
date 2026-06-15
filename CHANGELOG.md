@@ -1,3 +1,8 @@
+# Changelog - neom_directory
+
+## Unreleased - System updates
+- Actualizaciones de estabilidad y compatibilidad.
+
 ### 1.3.0 - Code Quality & Linter Compliance
 
 This release focuses on code quality improvements and alignment with latest linting standards.
