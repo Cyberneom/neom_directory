@@ -1,3 +1,6 @@
+
+## [2.0.0-unreleased] - 2026-07-21
+- Refactor and compatibility updates for directory_de_translations.dart, directory_fr_translations.dart.
 # Changelog - neom_directory
 
 ## Unreleased - System updates
