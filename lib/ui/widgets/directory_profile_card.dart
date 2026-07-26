@@ -212,7 +212,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                         ),
                         Row(
                           children: [
-                            const Icon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
+                            const FaIcon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
                             Text(int.parse(widget.distanceBetween) <= 2 ? CommonTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
                                 style: const TextStyle(
