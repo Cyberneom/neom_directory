@@ -45,9 +45,14 @@ class _DirectoryServiceDetailPageState extends State<DirectoryServiceDetailPage>
   List<String> get _galleryImages {
     final urls = <String>[];
     if (_profile.coverImgUrl.isNotEmpty) urls.add(_profile.coverImgUrl);
-    for (final facility in (_profile.facilities?.values ?? [])) {
-      for (final u in facility.galleryImgUrls) {
-        if (u != null && u.toString().isNotEmpty) urls.add(u.toString());
+    // Keep the map's element type: `?? []` would widen it to Object and drop
+    // access to the facility's fields.
+    final facilities = _profile.facilities?.values;
+    if (facilities != null) {
+      for (final facility in facilities) {
+        for (final u in facility.galleryImgUrls) {
+          if (u.toString().isNotEmpty) urls.add(u.toString());
+        }
       }
     }
     if (urls.isEmpty && _profile.photoUrl.isNotEmpty) urls.add(_profile.photoUrl);
