@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:neom_commons/ui/theme/app_color.dart';
 import 'package:neom_commons/ui/theme/app_theme.dart';
@@ -24,7 +23,7 @@ class DirectoryPage extends StatelessWidget {
       id: AppPageIdConstants.directory,
       init: DirectoryController(),
       builder: (controller) {
-        if (kIsWeb && MediaQuery.of(context).size.width > 900) {
+        if (MediaQuery.of(context).size.width > 900) {
           return DirectoryWebPage(controller: controller);
         }
         return Scaffold(
@@ -74,7 +73,6 @@ class DirectoryPage extends StatelessWidget {
   ListView buildDirectoryProfilesListView(Map<double, AppProfile> directoryProfiles, {required DirectoryController controller}) {
     return ListView.separated(
         padding: EdgeInsets.zero,
-        shrinkWrap: true,
         separatorBuilder:  (context, index) => const Divider(),
         itemCount: directoryProfiles.length,
         controller: controller.directoryScrollController,
