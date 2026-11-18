@@ -23,15 +23,13 @@ import 'package:sint/sint.dart';
 import '../../utils/constants/directory_translation_constants.dart';
 import '../directory_controller.dart';
 
-// ignore: must_be_immutable
 class DirectoryProfileCard extends StatefulWidget {
 
-  bool liked;
+  final bool liked;
   final AppProfile directoryProfile;
-  int _currentIndex = 0;
-  String distanceBetween;
+  final String distanceBetween;
 
-  DirectoryProfileCard(this.directoryProfile, {this.liked = false, this.distanceBetween = "", super.key});
+  const DirectoryProfileCard(this.directoryProfile, {this.liked = false, this.distanceBetween = "", super.key});
 
   @override
   DirectoryProfileCardState createState() => DirectoryProfileCardState();
@@ -40,13 +38,51 @@ class DirectoryProfileCard extends StatefulWidget {
 class DirectoryProfileCardState extends State<DirectoryProfileCard> {
 
   AppProfile directoryProfile = AppProfile();
+  late final PageController _pageController;
+  int _currentIndex = 0;
+  late bool _liked;
+
+  @override
+  void initState() {
+    super.initState();
+    _liked = widget.liked;
+    _pageController = PageController()..addListener(_onPageChanged);
+  }
+
+  @override
+  void didUpdateWidget(covariant DirectoryProfileCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.liked != widget.liked) {
+      _liked = widget.liked;
+    }
+  }
+
+  void _onPageChanged() {
+    final page = _pageController.page;
+    if (page == null) return;
+    final nextIndex = page.round();
+    if (nextIndex != _currentIndex && mounted) {
+      setState(() {
+        _currentIndex = nextIndex;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _pageController.removeListener(_onPageChanged);
+    _pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     directoryProfile = widget.directoryProfile;
-    final facilities = directoryProfile.facilities;
-    final List<String> demoImgUrls = facilities == null || facilities.isEmpty
-        ? []
-        : facilities.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
+    final firstFacility = directoryProfile.facilities?.values.firstOrNull;
+    final List<String> demoImgUrls = firstFacility?.galleryImgUrls
+            .where((url) => url.contains('.jpg'))
+            .toList() ??
+        const <String>[];
 
     return  SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
@@ -71,8 +107,8 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                   height: AppTheme.fullHeight(context)/4,
                   child: Stack(
                     children: <Widget>[
-                      buildImageSlider(context, PageController(), widget._currentIndex, directoryProfile.id, demoImgUrls),
-                      buildWidgetImageIndicator(context, demoImgUrls, widget._currentIndex),
+                      buildImageSlider(context, _pageController, _currentIndex, directoryProfile.id, demoImgUrls),
+                      buildWidgetImageIndicator(context, demoImgUrls, _currentIndex),
                       //TODO buildHeartWidget(context),
                     ],
                   ),
@@ -122,12 +158,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
 
   PageView buildImageSlider(BuildContext context, PageController p, int index, String profileId, List<String> demoImgUrls) {
     return PageView.builder(
-        controller: p..addListener(() {
-          setState(() {
-            index=p.page!.round();
-            widget._currentIndex=p.page!.round  ();
-          });
-        }),
+        controller: p,
         itemCount: demoImgUrls.length,
         itemBuilder: (context,index) {
           return GestureDetector(
@@ -217,7 +248,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                           children: [
                             const FaIcon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
-                            Text(int.parse(widget.distanceBetween) <= 2 ? CommonTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
+                            Text((int.tryParse(widget.distanceBetween) ?? 0) <= 2 ? CommonTranslationConstants.aroundYou.tr : '${widget.distanceBetween} KM',
                                 style: const TextStyle(
                                     fontSize: 12,
                                     color: Colors.white
@@ -293,13 +324,13 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
               shape: BoxShape.circle,
               //  borderRadius: BorderRadius.circular(25)
             ),
-            child: Icon(!widget.liked?Icons.favorite_border:Icons.favorite,
-              color: !widget.liked ? Colors.black: AppColor.ceriseRed,
+            child: Icon(!_liked?Icons.favorite_border:Icons.favorite,
+              color: !_liked ? Colors.black: AppColor.ceriseRed,
               size: 25,),
           ),
           onTap: (){
             setState(() {
-              widget.liked=!widget.liked;
+              _liked = !_liked;
             });
           },
         )

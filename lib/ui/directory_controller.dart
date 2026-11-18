@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:neom_commons/app_flavour.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_core/app_config.dart';
-import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/data/firestore/profile_firestore.dart';
 import 'package:neom_core/data/firestore/public_catalog_read_policy.dart';
 import 'package:neom_core/data/implementations/app_hive_controller.dart';
@@ -17,18 +16,39 @@ import 'package:neom_core/utils/enums/app_hive_box.dart';
 import 'package:neom_core/utils/enums/profile_type.dart';
 import 'package:neom_core/utils/enums/usage_reason.dart';
 import 'package:neom_core/utils/enums/verification_level.dart';
+import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:sint/sint.dart';
 
 import '../domain/use_cases/directory_service.dart';
 
 class DirectoryController extends SintController implements DirectoryService {
-  DirectoryController({ProfileFirestore? profileFirestore})
-      : profileFirestore = profileFirestore ?? ProfileFirestore();
+  DirectoryController({
+    AppHiveController? hiveController,
+    ProfileFirestore? profileFirestore,
+    ProfileFirestore? firestore,
+  })  : appHiveController = hiveController ?? AppHiveController(),
+        _injectedProfileFirestore = profileFirestore ?? firestore {
+    if (_injectedProfileFirestore != null) {
+      _lazyProfileFirestore = _injectedProfileFirestore;
+    }
+  }
 
-  final userController = Sint.find<UserController>();
-  final appHiveController = AppHiveController();
+  UserController get userController => Sint.find<UserController>();
+  UserController? get _userController =>
+      Sint.isRegistered<UserController>() ? Sint.find<UserController>() : null;
+  final AppHiveController appHiveController;
 
-  ProfileFirestore profileFirestore;
+  ProfileFirestore? _lazyProfileFirestore;
+  final ProfileFirestore? _injectedProfileFirestore;
+
+  ProfileFirestore get profileFirestore =>
+      _injectedProfileFirestore ?? (_lazyProfileFirestore ??= ProfileFirestore());
+  set profileFirestore(ProfileFirestore value) {
+    _lazyProfileFirestore = value;
+  }
+
+  ProfileFirestore get _profileFirestore => profileFirestore;
+
   final ScrollController directoryScrollController = ScrollController();
   bool isLoadingNextDirectory = false;
 
@@ -46,15 +66,107 @@ class DirectoryController extends SintController implements DirectoryService {
   final RxMap<double, AppProfile> filteredProfiles = <double, AppProfile>{}.obs;
   final RxList<ProfileType> selectedProfileTypes = <ProfileType>[].obs;
 
+  static const int maxSearchQueryChars = 120;
+  static final RegExp _controlAndBidiRe = RegExp(
+    r'[\x00-\x1F\x7F-\x9F\u0085\u061C\u200B\u200C\u200E\u200F\u2028-\u202E\u2060-\u2069\uFEFF]',
+  );
+  static final RegExp _gemmaThoughtBlock = RegExp(
+    r'<\|(?:channel|turn)>\s*thought\b[\s\S]*?<(?:channel|turn)\|>'
+    r'|<\|tool_call>[\s\S]*?<tool_call\|>',
+    caseSensitive: false,
+  );
+  static final RegExp _gemmaThoughtTruncated = RegExp(
+    r'<\|(?:channel|turn)>\s*thought\b[\s\S]*$'
+    r'|<\|tool_call>[\s\S]*$',
+    caseSensitive: false,
+  );
+  static final RegExp _internalTagBlock = RegExp(
+    r'<\s*(think|thinking|thought|memory_recall|auto_memory|system_context)\b[^>]*>[\s\S]*?<\s*/\s*\1\s*>'
+    r'|\[\s*(BIOCHIP|MEMORY_RECALL|AUTO_MEMORY|SYSTEM_CONTEXT)\b[^\]]*\](?:(?!\[\s*\2\b)[\s\S])*?\[\s*/\s*\2\s*\]',
+    caseSensitive: false,
+  );
+  static final RegExp _internalTagTruncated = RegExp(
+    r'<\s*(think|thinking|thought|memory_recall|auto_memory|system_context)\b[^>]*>[\s\S]*$',
+    caseSensitive: false,
+  );
+  static final RegExp _danglingInternalTag = RegExp(
+    r'<\s*/?\s*(think|thinking|thought|memory_recall|auto_memory|system_context)\b[^>]*>'
+    r'|<\|/?(?:turn|channel|eot|eot_id|im_start|im_end|tool_call)\|?>'
+    r'|<(?:turn|channel|tool_call)\|>'
+    r'|\[\s*/?\s*(?:BIOCHIP|MEMORY_RECALL|AUTO_MEMORY|SYSTEM_CONTEXT)\b[^\]]*\]',
+    caseSensitive: false,
+  );
+  static final RegExp _closingContentTagRe = RegExp(
+    r'<\s*/\s*content\s*>',
+    caseSensitive: false,
+  );
+
+  /// Sanitizes a directory search query, stripping Gemma-4/internal reasoning
+  /// blocks, Bidi/zero-width controls, and truncating UTF-16 surrogate-safely.
+  static String sanitizeSearchQuery(String query) {
+    if (query.isEmpty) return '';
+    var cleaned = query
+        .replaceAll(_gemmaThoughtBlock, ' ')
+        .replaceAll(_gemmaThoughtTruncated, ' ')
+        .replaceAll(_internalTagBlock, ' ')
+        .replaceAll(_internalTagTruncated, ' ')
+        .replaceAll(_danglingInternalTag, ' ')
+        .replaceAll(_closingContentTagRe, '[content_end]')
+        .replaceAll(RegExp(r'[\r\n\t]+'), ' ')
+        .replaceAll(_controlAndBidiRe, '')
+        .replaceAll(RegExp(r' {2,}'), ' ')
+        .trim();
+    if (cleaned.length > maxSearchQueryChars) {
+      var end = maxSearchQueryChars;
+      final cu = cleaned.codeUnitAt(end - 1);
+      if (cu >= 0xD800 && cu <= 0xDBFF) end -= 1;
+      cleaned = end <= 0 ? '' : cleaned.substring(0, end);
+    }
+    return cleaned.toLowerCase();
+  }
+
+  bool _isClosed = false;
+
   /// Immutable copy of all loaded profiles — never cleared by filters.
   /// Used as source of truth when applying/removing filters.
   Map<double, AppProfile> _allProfiles = {};
+  String _activeSearchQuery = '';
 
-  String today = '';
+  String today = _computeTodayKey();
+
+  static String _computeTodayKey([DateTime? now]) {
+    final dt = now ?? DateTime.now();
+    return '${dt.year.toString().padLeft(4, '0')}-'
+        '${dt.month.toString().padLeft(2, '0')}-'
+        '${dt.day.toString().padLeft(2, '0')}';
+  }
+
+  /// Sorts [profiles] by distance from [position] when geolocation is available
+  /// on both the visitor and every profile, or assigns deterministic synthetic
+  /// keys without throwing `Null check operator` when location is omitted.
+  static Map<double, AppProfile> sortOrIndexProfiles(
+    Position? currentPosition,
+    List<AppProfile> profiles, {
+    int indexOffset = 0,
+  }) {
+    if (profiles.isEmpty) return <double, AppProfile>{};
+    if (currentPosition != null &&
+        profiles.every((profile) => profile.position != null)) {
+      return CoreUtilities.sortProfilesByLocation(currentPosition, profiles);
+    }
+    final fallback = <double, AppProfile>{};
+    for (var i = 0; i < profiles.length; i++) {
+      final syntheticKey = -(indexOffset + i + 1).toDouble();
+      fallback[syntheticKey] = profiles[i];
+    }
+    return fallback;
+  }
 
   /// Public projections omit location, so their map keys are ordering indices,
   /// not distances that the UI may label as kilometres.
-  bool get hasDirectoryDistances => position != null &&
+  bool get hasDirectoryDistances =>
+      position != null &&
+      directoryProfiles.isNotEmpty &&
       directoryProfiles.values.every((profile) => profile.position != null);
 
   void _addDirectoryProfiles(List<AppProfile> profiles) {
@@ -82,16 +194,29 @@ class DirectoryController extends SintController implements DirectoryService {
   }
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    AppConfig.logger.d("Directory Controller Init");
+    AppConfig.logger.d('Directory Controller Init');
+    today = _computeTodayKey();
+    if (_injectedProfileFirestore == null && _lazyProfileFirestore == null) {
+      try {
+        _lazyProfileFirestore = ProfileFirestore();
+      } catch (_) {}
+    }
 
-    profile = userController.profile;
+    profile = _userController?.profile ?? AppProfile();
 
-    if (Sint.arguments != null && Sint.arguments.isNotEmpty) {
-      isAdminCenter = Sint.arguments[0] ?? false;
+    final args = Sint.arguments;
+    if (args is List && args.isNotEmpty) {
+      isAdminCenter = args[0] == true;
       needsPosts.value = false;
-      AppConfig.logger.d("isAdminCenter: $isAdminCenter");
+      AppConfig.logger.d('isAdminCenter: $isAdminCenter');
+    } else if (args is bool) {
+      isAdminCenter = args;
+      needsPosts.value = false;
+    } else if (args is Map && args['isAdminCenter'] is bool) {
+      isAdminCenter = args['isAdminCenter'] as bool;
+      needsPosts.value = false;
     }
 
     directoryScrollController.addListener(_directoryScrollListener);
@@ -100,30 +225,33 @@ class DirectoryController extends SintController implements DirectoryService {
   @override
   void onReady() async {
     super.onReady();
-    AppConfig.logger.d("onReady");
+    AppConfig.logger.d('onReady');
     try {
       position =
           profile.position ?? await GeoLocatorController().getCurrentPosition();
 
       if (appHiveController.directoryLastUpdate != today) {
         AppConfig.logger.i(
-          "Los datos en caché son antiguos. Cargando nuevos datos...",
+          'Los datos en caché son antiguos. Cargando nuevos datos...',
         );
         await appHiveController.clearBox(AppHiveBox.directory.name);
       } else {
-        AppConfig.logger.i("Cargando directoryProfiles desde caché...");
+        AppConfig.logger.i('Cargando directoryProfiles desde caché...');
         final directoryBox = await appHiveController.getBox(
           AppHiveBox.directory.name,
         );
-        var cachedProfiles = directoryBox.get(
+        final cachedProfiles = directoryBox.get(
           isAdminCenter
               ? AppHiveConstants.adminDirectoryProfiles
               : AppHiveConstants.directoryProfiles,
         );
-        if (cachedProfiles != null && cachedProfiles is Map) {
+        if (cachedProfiles is Map) {
           directoryProfiles.clear();
           _addDirectoryProfiles(
-            cachedProfiles.values.map((value) => AppProfile.fromJSON(value)).toList(),
+            cachedProfiles.values
+                .whereType<Map>()
+                .map((value) => AppProfile.fromJSON(value))
+                .toList(),
           );
         } else {
           directoryProfiles.value = {};
@@ -133,32 +261,42 @@ class DirectoryController extends SintController implements DirectoryService {
       if (directoryProfiles.isEmpty || isAdminCenter) {
         await getDirectoryProfiles();
       }
+      if (_isClosed || isClosed) return;
 
       _allProfiles = Map.from(directoryProfiles);
       filteredProfiles.assignAll(directoryProfiles);
     } catch (e, st) {
-      NeomErrorLogger.recordError(e, st, module: 'neom_directory', operation: 'onReady');
+      NeomErrorLogger.recordError(
+        e,
+        st,
+        module: 'neom_directory',
+        operation: 'onReady',
+      );
     }
 
-    isLoading.value = false;
-    update();
+    if (!_isClosed && !isClosed) {
+      isLoading.value = false;
+      update();
+    }
   }
 
   Future<void> getDirectoryProfiles() async {
-    AppConfig.logger.d("Getting Directory Profiles from Firestore");
+    AppConfig.logger.d('Getting Directory Profiles from Firestore');
     List<AppProfile> profilesWithPhoneAndFacility = [];
 
     if (isAdminCenter) {
       directoryProfiles.clear();
-      profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
+      profilesWithPhoneAndFacility = await _profileFirestore.getWithParameters(
         needsPhone: !PublicCatalogReadPolicy.enabled,
         currentPosition: position,
       );
     } else {
-      profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
+      profilesWithPhoneAndFacility = await _profileFirestore.getWithParameters(
         needsPhone: !PublicCatalogReadPolicy.enabled,
         needsPosts: needsPosts.value,
-        profileTypes: ProfileType.values.where((t) => t != ProfileType.general).toList(),
+        profileTypes: ProfileType.values
+            .where((t) => t != ProfileType.general)
+            .toList(),
         currentPosition: position,
         maxDistance: 5000,
         limit: 200,
@@ -167,9 +305,14 @@ class DirectoryController extends SintController implements DirectoryService {
 
     // Sort by plan tier (premium/platinum first for visibility incentive).
     final subscribedProfiles = profilesWithPhoneAndFacility
-        .where((p) => p.verificationLevel.value >= VerificationLevel.basic.value)
+        .where(
+          (p) => p.verificationLevel.value >= VerificationLevel.basic.value,
+        )
         .toList()
-      ..sort((a, b) => b.verificationLevel.value.compareTo(a.verificationLevel.value));
+      ..sort(
+        (a, b) =>
+            b.verificationLevel.value.compareTo(a.verificationLevel.value),
+      );
 
     // Add non-subscribed at the end (lower priority)
     final nonSubscribed = profilesWithPhoneAndFacility
@@ -180,7 +323,7 @@ class DirectoryController extends SintController implements DirectoryService {
     final directoryBox = await appHiveController.getBox(
       AppHiveBox.directory.name,
     );
-    directoryBox.put(
+    await directoryBox.put(
       isAdminCenter
           ? AppHiveConstants.adminDirectoryProfiles
           : AppHiveConstants.directoryProfiles,
@@ -188,132 +331,139 @@ class DirectoryController extends SintController implements DirectoryService {
         (key, value) => MapEntry(key, value.toJSONWithFacilities()),
       ),
     );
-    directoryBox.put(AppHiveConstants.lastUpdate, today);
+    await directoryBox.put(AppHiveConstants.lastUpdate, today);
   }
 
   void _directoryScrollListener() async {
+    if (!directoryScrollController.hasClients) return;
     try {
-      double maxScrollExtent =
+      final double maxScrollExtent =
           directoryScrollController.position.maxScrollExtent;
 
       if (directoryScrollController.offset >= maxScrollExtent &&
           !directoryScrollController.position.outOfRange &&
           !isLoadingNextDirectory) {
-        AppConfig.logger.d("Directory Bottom Reached");
+        AppConfig.logger.d('Directory Bottom Reached');
         isLoadingNextDirectory = true;
         update([AppPageIdConstants.directory]);
 
-        List<AppProfile> nextProfiles = [];
-        if (!isAdminCenter) {
-          nextProfiles = await profileFirestore.getWithParameters(
-            needsPhone: !PublicCatalogReadPolicy.enabled,
-            needsPosts: needsPosts.value,
-            usageReasons: [UsageReason.professional],
-            profileTypes: AppFlavour.getDirectoryProfileTypes(),
-            currentPosition: position,
-            maxDistance: 2000,
-            limit: 10,
-            isFirstCall: false,
-          );
-        } else {
-          nextProfiles = await profileFirestore.getWithParameters(
-            needsPhone: !PublicCatalogReadPolicy.enabled,
-          );
-        }
+        try {
+          List<AppProfile> nextProfiles = [];
+          if (!isAdminCenter) {
+            nextProfiles = await _profileFirestore.getWithParameters(
+              needsPhone: !PublicCatalogReadPolicy.enabled,
+              needsPosts: needsPosts.value,
+              usageReasons: [UsageReason.professional],
+              profileTypes: AppFlavour.getDirectoryProfileTypes(),
+              currentPosition: position,
+              maxDistance: 2000,
+              limit: 10,
+              isFirstCall: false,
+            );
+          } else {
+            nextProfiles = await _profileFirestore.getWithParameters(
+              needsPhone: !PublicCatalogReadPolicy.enabled,
+            );
+          }
 
-        AppConfig.logger.i(
-          "${nextProfiles.length} next Profiles with Facilities found",
-        );
-        _addDirectoryProfiles(nextProfiles);
-        isLoadingNextDirectory = false;
+          AppConfig.logger.i(
+            '${nextProfiles.length} next Profiles with Facilities found',
+          );
+          if (_isClosed || isClosed) return;
+          _addDirectoryProfiles(nextProfiles);
+          _allProfiles = Map.from(directoryProfiles);
+          await applyFilters();
+        } finally {
+          isLoadingNextDirectory = false;
+        }
       }
 
       if (directoryScrollController.offset <=
               directoryScrollController.position.minScrollExtent &&
           !directoryScrollController.position.outOfRange) {
-        AppConfig.logger.d("Scrolling cool");
+        AppConfig.logger.d('Scrolling cool');
       }
     } catch (e, st) {
-      NeomErrorLogger.recordError(e, st, module: 'neom_directory', operation: '_directoryScrollListener');
+      NeomErrorLogger.recordError(
+        e,
+        st,
+        module: 'neom_directory',
+        operation: '_directoryScrollListener',
+      );
     }
 
-    update([AppPageIdConstants.directory]);
+    if (!_isClosed && !isClosed) {
+      update([AppPageIdConstants.directory]);
+    }
   }
 
   Future<void> toggleNeedsPosts() async {
+    if (_isClosed || isClosed) return;
     needsPosts.value = !needsPosts.value;
     directoryProfiles.clear();
     filteredProfiles.clear();
     isLoading.value = true;
     await appHiveController.clearBox(AppHiveBox.directory.name);
     await getDirectoryProfiles();
+    if (_isClosed || isClosed) return;
     _allProfiles = Map.from(directoryProfiles);
-    filteredProfiles.assignAll(directoryProfiles);
+    await applyFilters();
+    if (_isClosed || isClosed) return;
     isLoading.value = false;
     update();
   }
 
   /// Toggle a category filter and immediately apply.
   void toggleProfileTypeFilter(ProfileType type) {
-    AppConfig.logger.d("Toggling filter for profile type: $type");
+    if (_isClosed || isClosed) return;
+    AppConfig.logger.d('Toggling filter for profile type: $type');
     if (selectedProfileTypes.contains(type)) {
       selectedProfileTypes.remove(type);
     } else {
       selectedProfileTypes.add(type);
     }
-    // Apply immediately — no separate "filtrar" button needed
     applyFilters();
   }
 
   Future<void> applyFilters() async {
-    AppConfig.logger.d("Applying filters: $selectedProfileTypes");
+    if (_isClosed || isClosed) return;
+    AppConfig.logger.d('Applying filters: $selectedProfileTypes');
 
-    // Always use _allProfiles as the immutable source of truth
     final source = _allProfiles.isNotEmpty ? _allProfiles : directoryProfiles;
+    final q = _activeSearchQuery;
 
-    // No filters selected = show ALL profiles
-    if (selectedProfileTypes.isEmpty) {
-      filteredProfiles.value = Map<double, AppProfile>.from(source);
-      update();
-      return;
-    }
-
-    // Filter by selected category types
     final result = <double, AppProfile>{};
     for (final entry in source.entries) {
-      if (selectedProfileTypes.contains(entry.value.type)) {
-        result[entry.key] = entry.value;
+      final p = entry.value;
+      if (selectedProfileTypes.isNotEmpty &&
+          !selectedProfileTypes.contains(p.type)) {
+        continue;
       }
+      if (q.isNotEmpty && !_profileMatchesQuery(p, q)) {
+        continue;
+      }
+      result[entry.key] = p;
     }
-    AppConfig.logger.d("Filter: ${source.length} total, "
-        "${result.length} match. "
-        "Types in directory: ${source.values.map((p) => p.type.name).toSet()}");
 
     filteredProfiles.value = result;
     update();
   }
 
+  static bool _profileMatchesQuery(AppProfile p, String q) {
+    final hasSkillMatch =
+        p.skills?.values.any((s) => s.name.toLowerCase().contains(q)) ?? false;
+    return p.name.toLowerCase().contains(q) ||
+        p.aboutMe.toLowerCase().contains(q) ||
+        p.mainFeature.toLowerCase().contains(q) ||
+        p.address.toLowerCase().contains(q) ||
+        hasSkillMatch;
+  }
+
   /// Text-based search filter for web. Matches name, aboutMe, mainFeature, address.
   void filterByQuery(String query) {
-    if (query.trim().isEmpty) {
-      filteredProfiles.assignAll(directoryProfiles);
-      return;
-    }
-    final q = query.toLowerCase();
-    final matching = <double, AppProfile>{};
-    for (final entry in directoryProfiles.entries) {
-      final p = entry.value;
-      final hasSkillMatch = p.skills?.values.any(
-          (s) => s.name.toLowerCase().contains(q)) ?? false;
-      if (p.name.toLowerCase().contains(q) ||
-          p.aboutMe.toLowerCase().contains(q) ||
-          p.mainFeature.toLowerCase().contains(q) ||
-          p.address.toLowerCase().contains(q) ||
-          hasSkillMatch) {
-        matching[entry.key] = p;
-      }
-    }
-    filteredProfiles.assignAll(matching);
+    if (_isClosed || isClosed) return;
+    _activeSearchQuery = sanitizeSearchQuery(query);
+    applyFilters();
   }
 
   /// Retorna la lista completa de tipos de perfil relevantes para el Directorio.
@@ -326,5 +476,26 @@ class DirectoryController extends SintController implements DirectoryService {
               type != ProfileType.broadcaster,
         )
         .toList();
+  }
+
+  @override
+  void onClose() {
+    if (_isClosed) {
+      super.onClose();
+      return;
+    }
+    _isClosed = true;
+    try {
+      directoryScrollController.removeListener(_directoryScrollListener);
+      directoryScrollController.dispose();
+    } catch (_) {}
+    needsPosts.close();
+    isButtonDisabled.close();
+    isLoading.close();
+    isUploading.close();
+    directoryProfiles.close();
+    filteredProfiles.close();
+    selectedProfileTypes.close();
+    super.onClose();
   }
 }

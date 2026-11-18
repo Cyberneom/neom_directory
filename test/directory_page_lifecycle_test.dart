@@ -73,7 +73,9 @@ void main() {
       var width = 1440.0;
       var showDirectory = true;
       addTearDown(() {
-        directory.directoryScrollController.dispose();
+        if (!directory.isClosed) {
+          directory.onClose();
+        }
         Sint.reset();
       });
       await tester.pumpWidget(

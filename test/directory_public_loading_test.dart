@@ -100,8 +100,9 @@ void main() {
   });
 
   tearDown(() async {
-    controller?.directoryScrollController.dispose();
-    controller?.onClose();
+    if (controller != null && !controller!.isClosed) {
+      controller!.onClose();
+    }
     controller = null;
     Sint.reset();
     await Hive.close();

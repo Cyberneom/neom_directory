@@ -392,7 +392,7 @@ void _showAddSkillDialog(BuildContext context, SkillsController controller) {
                   const Spacer(),
                   IconButton(
                     icon: const Icon(Icons.close, color: Colors.white38, size: 20),
-                    onPressed: () => Navigator.of(ctx).pop(),
+                    onPressed: () => Sint.pop(),
                   ),
                 ],
               ),
@@ -538,7 +538,7 @@ void _showAddSkillDialog(BuildContext context, SkillsController controller) {
                           final price = double.tryParse(priceCtrl.text) ?? 0;
                           final added = await controller.addSkill(skill, selectedLevel.value, price: price);
                           if (added && ctx.mounted) {
-                            Navigator.of(ctx).pop();
+                            Sint.pop();
                           }
                         },
                       );
@@ -553,7 +553,7 @@ void _showAddSkillDialog(BuildContext context, SkillsController controller) {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () => Navigator.of(ctx).pop(),
+                    onPressed: () => Sint.pop(),
                     child: Text(AppTranslationConstants.cancel.tr, style: const TextStyle(color: Colors.white54)),
                   ),
                 ],
