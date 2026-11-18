@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:neom_commons/app_flavour.dart';
 import 'package:neom_commons/utils/constants/app_page_id_constants.dart';
 import 'package:neom_core/app_config.dart';
 import 'package:neom_core/utils/neom_error_logger.dart';
 import 'package:neom_core/data/firestore/profile_firestore.dart';
+import 'package:neom_core/data/firestore/public_catalog_read_policy.dart';
 import 'package:neom_core/data/implementations/app_hive_controller.dart';
 import 'package:neom_core/data/implementations/geolocator_controller.dart';
 import 'package:neom_core/data/implementations/user_controller.dart';
@@ -19,13 +19,16 @@ import 'package:neom_core/utils/enums/usage_reason.dart';
 import 'package:neom_core/utils/enums/verification_level.dart';
 import 'package:sint/sint.dart';
 
-import '../../domain/use_cases/directory_service.dart';
+import '../domain/use_cases/directory_service.dart';
 
 class DirectoryController extends SintController implements DirectoryService {
+  DirectoryController({ProfileFirestore? profileFirestore})
+      : profileFirestore = profileFirestore ?? ProfileFirestore();
+
   final userController = Sint.find<UserController>();
   final appHiveController = AppHiveController();
 
-  ProfileFirestore profileFirestore = ProfileFirestore();
+  ProfileFirestore profileFirestore;
   final ScrollController directoryScrollController = ScrollController();
   bool isLoadingNextDirectory = false;
 
@@ -48,6 +51,35 @@ class DirectoryController extends SintController implements DirectoryService {
   Map<double, AppProfile> _allProfiles = {};
 
   String today = '';
+
+  /// Public projections omit location, so their map keys are ordering indices,
+  /// not distances that the UI may label as kilometres.
+  bool get hasDirectoryDistances => position != null &&
+      directoryProfiles.values.every((profile) => profile.position != null);
+
+  void _addDirectoryProfiles(List<AppProfile> profiles) {
+    final merged = <String, AppProfile>{
+      for (final profile in directoryProfiles.values) profile.id: profile,
+      for (final profile in profiles) profile.id: profile,
+    }.values.toList();
+    final currentPosition = position;
+    if (currentPosition != null &&
+        merged.every((profile) => profile.position != null)) {
+      directoryProfiles.assignAll(
+        CoreUtilities.sortProfilesByLocation(currentPosition, merged),
+      );
+      return;
+    }
+
+    merged.sort((a, b) {
+      final byName = a.name.compareTo(b.name);
+      return byName != 0 ? byName : a.id.compareTo(b.id);
+    });
+    directoryProfiles.assignAll({
+      for (var index = 0; index < merged.length; index++)
+        index.toDouble(): merged[index],
+    });
+  }
 
   @override
   void onInit() async {
@@ -89,8 +121,9 @@ class DirectoryController extends SintController implements DirectoryService {
               : AppHiveConstants.directoryProfiles,
         );
         if (cachedProfiles != null && cachedProfiles is Map) {
-          directoryProfiles.value = cachedProfiles.map(
-            (key, value) => MapEntry(key, AppProfile.fromJSON(value)),
+          directoryProfiles.clear();
+          _addDirectoryProfiles(
+            cachedProfiles.values.map((value) => AppProfile.fromJSON(value)).toList(),
           );
         } else {
           directoryProfiles.value = {};
@@ -118,12 +151,12 @@ class DirectoryController extends SintController implements DirectoryService {
     if (isAdminCenter) {
       directoryProfiles.clear();
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-        needsPhone: true,
+        needsPhone: !PublicCatalogReadPolicy.enabled,
         currentPosition: position,
       );
     } else {
       profilesWithPhoneAndFacility = await profileFirestore.getWithParameters(
-        needsPhone: true,
+        needsPhone: !PublicCatalogReadPolicy.enabled,
         needsPosts: needsPosts.value,
         profileTypes: ProfileType.values.where((t) => t != ProfileType.general).toList(),
         currentPosition: position,
@@ -143,12 +176,7 @@ class DirectoryController extends SintController implements DirectoryService {
         .where((p) => p.verificationLevel.value < VerificationLevel.basic.value)
         .toList();
 
-    directoryProfiles.addAll(
-      CoreUtilities.sortProfilesByLocation(
-        position!,
-        [...subscribedProfiles, ...nonSubscribed],
-      ),
-    );
+    _addDirectoryProfiles([...subscribedProfiles, ...nonSubscribed]);
     final directoryBox = await appHiveController.getBox(
       AppHiveBox.directory.name,
     );
@@ -178,7 +206,7 @@ class DirectoryController extends SintController implements DirectoryService {
         List<AppProfile> nextProfiles = [];
         if (!isAdminCenter) {
           nextProfiles = await profileFirestore.getWithParameters(
-            needsPhone: true,
+            needsPhone: !PublicCatalogReadPolicy.enabled,
             needsPosts: needsPosts.value,
             usageReasons: [UsageReason.professional],
             profileTypes: AppFlavour.getDirectoryProfileTypes(),
@@ -189,16 +217,14 @@ class DirectoryController extends SintController implements DirectoryService {
           );
         } else {
           nextProfiles = await profileFirestore.getWithParameters(
-            needsPhone: true,
+            needsPhone: !PublicCatalogReadPolicy.enabled,
           );
         }
 
         AppConfig.logger.i(
           "${nextProfiles.length} next Profiles with Facilities found",
         );
-        directoryProfiles.addAll(
-          CoreUtilities.sortProfilesByLocation(position!, nextProfiles),
-        );
+        _addDirectoryProfiles(nextProfiles);
         isLoadingNextDirectory = false;
       }
 

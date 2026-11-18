@@ -15,14 +15,17 @@ import 'web/directory_web_page.dart';
 import 'widgets/directory_profile_card.dart';
 
 class DirectoryPage extends StatelessWidget {
-  const DirectoryPage({super.key});
+  const DirectoryPage({super.key, this.controller});
+
+  final DirectoryController? controller;
 
   @override
   Widget build(BuildContext context) {
-    Sint.delete<DirectoryController>();
+    // SintBuilder owns disposal when this route leaves the widget tree.
+    // Rebuilding for a viewport change must retain its in-flight controller.
     return SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
-      init: DirectoryController(),
+      init: controller ?? DirectoryController(),
       builder: (controller) {
         if (kIsWeb && MediaQuery.of(context).size.width > 900) {
           return DirectoryWebPage(controller: controller);
@@ -80,7 +83,9 @@ class DirectoryPage extends StatelessWidget {
         controller: controller.directoryScrollController,
         itemBuilder: (context, index) {
           return DirectoryProfileCard(directoryProfiles.values.elementAt(index),
-            distanceBetween: directoryProfiles.keys.elementAt(index).round().toString(),);
+            distanceBetween: controller.hasDirectoryDistances
+                ? directoryProfiles.keys.elementAt(index).round().toString()
+                : '',);
         });
   }
 

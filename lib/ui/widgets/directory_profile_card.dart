@@ -43,7 +43,10 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
   @override
   Widget build(BuildContext context) {
     directoryProfile = widget.directoryProfile;
-    List<String> demoImgUrls = directoryProfile.facilities!.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
+    final facilities = directoryProfile.facilities;
+    final List<String> demoImgUrls = facilities == null || facilities.isEmpty
+        ? []
+        : facilities.values.first.galleryImgUrls.where((url)=>url.contains('.jpg')).toList();
 
     return  SintBuilder<DirectoryController>(
       id: AppPageIdConstants.directory,
@@ -210,7 +213,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                             )
                           ]
                         ),
-                        Row(
+                        if (widget.distanceBetween.isNotEmpty) Row(
                           children: [
                             const FaIcon(FontAwesomeIcons.road, color: Colors.white, size: 12,),
                             AppTheme.widthSpace5,
@@ -226,7 +229,7 @@ class DirectoryProfileCardState extends State<DirectoryProfileCard> {
                   )
                 ],
               ),
-              if(profile.showPhone)
+              if(directoryProfile.showPhone && directoryProfile.phoneNumber.trim().isNotEmpty)
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                 decoration: BoxDecoration(
