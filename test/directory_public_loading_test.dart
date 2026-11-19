@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 import 'package:neom_core/app_config.dart';
 import 'package:neom_core/data/firestore/profile_firestore.dart';
 import 'package:neom_core/data/implementations/user_controller.dart';
