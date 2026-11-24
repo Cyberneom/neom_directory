@@ -121,7 +121,7 @@ class DirectoryPage extends StatelessWidget {
             }),
             const SizedBox(height: 20),
             TextButton(
-              onPressed: () => Sint.back(),
+              onPressed: () => Sint.pop(),
               child: Text(AppTranslationConstants.close.tr,
                 style: const TextStyle(fontSize: 16, color: Colors.white70),
               ),
